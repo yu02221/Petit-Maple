@@ -10,6 +10,11 @@ public class UIManager : MonoBehaviour
         StartCoroutine(BtnBoardDown());
     }
 
+    public void OnClickedQuitButton()
+    {
+        Application.Quit();
+    }
+
     IEnumerator BtnBoardDown()
     {
         BtnBoard.SetBool("goNextScene", true);
