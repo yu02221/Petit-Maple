@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 313705787}
   - component: {fileID: 313705788}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 313705786}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 538a5bb323b6b394db76fa2079400520, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -196,9 +196,9 @@ GameObject:
   - component: {fileID: 391355646}
   - component: {fileID: 391355647}
   - component: {fileID: 391355648}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -326,8 +326,9 @@ MonoBehaviour:
   moveSpeed: 1.5
   gravity: -9.81
   jumpPower: 5
-  onGround: 1
-  isWalking: 0
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 128
   sr: {fileID: 0}
   player: {fileID: 391355646}
 --- !u!114 &391355648
@@ -342,8 +343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec333a67fafae7b4e861615290152c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &391355649
-BoxCollider2D:
+--- !u!70 &391355649
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -355,19 +356,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.38}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.48, y: 0.74}
-    newSize: {x: 0.48, y: 0.74}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.43, y: 0.7}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 0.37}
+  m_Size: {x: 0.4, y: 0.7}
+  m_Direction: 0
 --- !u!1 &614378360
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,9 +511,10 @@ GameObject:
   m_Component:
   - component: {fileID: 799594105}
   - component: {fileID: 799594106}
-  m_Layer: 0
+  - component: {fileID: 799594107}
+  m_Layer: 7
   m_Name: Platform
-  m_TagString: Ground
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -551,9 +543,9 @@ BoxCollider2D:
   m_GameObject: {fileID: 799594104}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 538a5bb323b6b394db76fa2079400520, type: 2}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -568,6 +560,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!251 &799594107
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799594104}
+  m_Enabled: 1
+  m_UseColliderMask: 0
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 60
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1269120228
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,6 +782,7 @@ Transform:
   - {fileID: 636535811}
   - {fileID: 1269120229}
   - {fileID: 799594105}
+  - {fileID: 1891546740}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -849,9 +861,9 @@ GameObject:
   - component: {fileID: 1866528460}
   - component: {fileID: 1866528459}
   - component: {fileID: 1866528458}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NPC_Mike
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -943,6 +955,84 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1891546739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1891546740}
+  - component: {fileID: 1891546742}
+  - component: {fileID: 1891546741}
+  m_Layer: 7
+  m_Name: Platform (1)
+  m_TagString: Platform
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1891546740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891546739}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.05, y: -0.75, z: 0}
+  m_LocalScale: {x: 1.01, y: 0.1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1704932180}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &1891546741
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891546739}
+  m_Enabled: 1
+  m_UseColliderMask: 0
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 60
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
+--- !u!61 &1891546742
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891546739}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 538a5bb323b6b394db76fa2079400520, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2135898050
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,9 +1044,9 @@ GameObject:
   - component: {fileID: 2135898054}
   - component: {fileID: 2135898053}
   - component: {fileID: 2135898051}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NPC_Wongki
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
