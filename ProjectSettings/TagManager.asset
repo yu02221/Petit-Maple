@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - Platform
   - NPC
+  - Background
+  - Ladder
+  - LadderTop
   layers:
   - Default
   - TransparentFX
@@ -14,12 +17,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - Ground
+  - Background
+  - Platform
   - Monster
   - Player
   - NPC
-  - 
+  - onLadder
   - 
   - 
   - 

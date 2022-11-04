@@ -4,33 +4,53 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
     public float moveSpeed = 2.0f;
     public float gravity = -9.81f;
     public float jumpPower = 5.0f;
 
     public LayerMask groundMask;
 
+    private Vector2 input;
     private Vector3 velocity;
 
     private bool onGround = true;
     private bool isWalking = false;
     private bool isProstrated = false;
     private bool isAttacking = false;
+    private bool onLadder = false;
 
+    public Rigidbody2D rb;
     public SpriteRenderer sr;
-
-    public Animator player;
+    public Animator animator;
+    public GameManager gm;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), 
+        input = new Vector2(Input.GetAxisRaw("Horizontal"), 
             Input.GetAxisRaw("Vertical"));
 
+        if (onLadder)
+        {
+            Ladder();
+            if (Input.GetKey(KeyCode.LeftAlt) && input.x != 0)
+            {
+                LadderJump();
+            }
+        }
+        else
+        {
+            OutOfLadder();
+        }
+        if (rb.velocity.y < -0.2f)
+            onGround = false;
         if (onGround)
         {
             if (!isProstrated && !isAttacking)
@@ -64,6 +84,11 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(NormalAttack());
         }
 
+        if (velocity.x > 0)
+            sr.flipX = true;
+        else if (velocity.x < 0)
+            sr.flipX = false;
+
         transform.Translate(velocity * Time.fixedDeltaTime);
 
         SetAnimatorBool();
@@ -71,43 +96,47 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground"))
-        {
-            onGround = true;
-        }
-        if (col.gameObject.CompareTag("Platform")
-            && velocity.y <= 1.0f)
-        {
-            onGround = true;
-        }
-    }
-    /*
-    private void CheckOnGround()
-    {
-        Debug.DrawRay(transform.position, Vector3.down * 0.1f, Color.red);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundMask);
-        print(hit.distance);
-        if (hit.distance < 0.1f && velocity.y <= 2.0f)
+        if (col.gameObject.CompareTag("Ground") || 
+            col.gameObject.CompareTag("Platform") && velocity.y <= 2.0f)
         {
             onGround = true;
             velocity.y = 0;
         }
-        else
+    }
+
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.CompareTag("Ladder") && input.y > 0
+            || col.CompareTag("LadderTop") && input.y < 0)
         {
-            onGround = false;
+            transform.position = new Vector3(
+                col.transform.position.x,
+                transform.position.y,
+                transform.position.z);
+            onLadder = true;
+        }
+
+        if (col.CompareTag("Portal") && input.y > 0)
+        {
+            gm.MapChange();
         }
     }
-    */
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.CompareTag("Ladder") && input.y <= 0
+            || col.CompareTag("LadderTop") && input.y >= 0)
+        {
+            onLadder = false;
+        }
+    }
 
     private void Walking(Vector2 input)
     {
         velocity.x = input.x * moveSpeed;
         isWalking = true;
-        if (velocity.x > 0)
-            sr.flipX = true;
-        else if (velocity.x < 0)
-            sr.flipX = false;
-        else
+        
+        if (velocity.x == 0)
             isWalking = false;
     }
 
@@ -117,18 +146,48 @@ public class PlayerController : MonoBehaviour
         velocity.y = jumpPower;
     }
 
+    private void Ladder()
+    {
+        onGround = false;
+        isWalking = false;
+        this.gameObject.layer = 11;
+        gravity = 0;
+        rb.gravityScale = 0;
+        rb.velocity = new Vector2(0, 0);
+        velocity.x = 0;
+        velocity.y = input.y * moveSpeed;
+        animator.speed = Mathf.Abs(velocity.y);
+    }
+
+    private void LadderJump()
+    {
+        onLadder = false;
+        OutOfLadder();
+        velocity.x = input.x * 2;
+        velocity.y = 2;
+    }
+
+    private void OutOfLadder()
+    {
+        gravity = -9.81f;
+        rb.gravityScale = 1;
+        this.gameObject.layer = 9;
+        animator.speed = 1;
+    }
+
     IEnumerator NormalAttack()
     {
         isAttacking = true;
-        player.SetTrigger("doAttack");
+        animator.SetTrigger("doAttack");
         yield return new WaitForSeconds(1.0f);
         isAttacking = false;
     }
 
     private void SetAnimatorBool()
     {
-        player.SetBool("onGround", onGround);
-        player.SetBool("isWalking", isWalking);
-        player.SetBool("isProstrated", isProstrated);
+        animator.SetBool("onGround", onGround);
+        animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isProstrated", isProstrated);
+        animator.SetBool("onLadder", onLadder);
     }
 }
