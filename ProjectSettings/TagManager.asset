@@ -25,7 +25,7 @@ TagManager:
   - Monster
   - Player
   - NPC
-  - onLadder
+  - IgnorePlatform
   - Portal
   - 
   - 

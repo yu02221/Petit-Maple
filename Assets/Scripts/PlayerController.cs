@@ -35,62 +35,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        input = new Vector2(Input.GetAxisRaw("Horizontal"), 
-            Input.GetAxisRaw("Vertical"));
-
-        if (onLadder || onRope)
-        {
-            Climb();
-            if (Input.GetKey(KeyCode.LeftAlt) && input.x != 0)
-            {
-                JumpOnClimb();
-            }
-        }
-        else
-        {
-            QuitClimb();
-        }
-        if (rb.velocity.y < -0.2f)
-            onGround = false;
-        if (onGround)
-        {
-            if (!isProstrated && !isAttacking)
-                Walking(input);
-
-            if (!isProstrated && !isAttacking
-                && Input.GetKey(KeyCode.LeftAlt))
-                NormalJump();
-
-            if (input.y < 0)
-            {
-                isProstrated = true;
-                velocity.x = 0;
-            }
-            else
-                isProstrated = false;
-
-            if (isAttacking)
-            {
-                velocity.x = 0;
-            }
-        }
-        else
-        {
-            velocity.y += gravity * Time.fixedDeltaTime;
-        }
-
-        if (!isAttacking && !isProstrated 
-            && Input.GetKey(KeyCode.LeftControl))
-        {
-            StartCoroutine(NormalAttack());
-        }
-
-        if (velocity.x > 0)
-            sr.flipX = true;
-        else if (velocity.x < 0)
-            sr.flipX = false;
-
-        transform.Translate(velocity * Time.fixedDeltaTime);
+        KeyboardInput();
+        
+        Move();
 
         SetAnimatorBool();
     }
@@ -107,28 +54,31 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.CompareTag("Ladder") && input.y > 0
+        if (!isAttacking)
+        {
+            if (col.CompareTag("Ladder") && input.y > 0
             || col.CompareTag("LadderTop") && input.y < 0)
-        {
-            transform.position = new Vector3(
-                col.transform.position.x,
-                transform.position.y,
-                transform.position.z);
-            onLadder = true;
-        }
-        if (col.CompareTag("Rope") && input.y > 0
-            || col.CompareTag("RopeTop") && input.y < 0)
-        {
-            transform.position = new Vector3(
-                col.transform.position.x,
-                transform.position.y,
-                transform.position.z);
-            onRope = true;
-        }
+            {
+                transform.position = new Vector3(
+                    col.transform.position.x,
+                    transform.position.y,
+                    transform.position.z);
+                onLadder = true;
+            }
+            if (col.CompareTag("Rope") && input.y > 0
+                || col.CompareTag("RopeTop") && input.y < 0)
+            {
+                transform.position = new Vector3(
+                    col.transform.position.x,
+                    transform.position.y,
+                    transform.position.z);
+                onRope = true;
+            }
 
-        if (col.CompareTag("Portal") && input.y > 0)
-        {
-            gm.MapChange();
+            if (col.CompareTag("Portal") && input.y > 0)
+            {
+                gm.MapChange();
+            }
         }
     }
 
@@ -138,12 +88,76 @@ public class PlayerController : MonoBehaviour
             || col.CompareTag("LadderTop") && input.y >= 0)
         {
             onLadder = false;
+            QuitClimb();
         }
         if (col.CompareTag("Rope") && input.y <= 0
             || col.CompareTag("RopeTop") && input.y >= 0)
         {
             onRope = false;
+            QuitClimb();
         }
+    }
+
+    private void KeyboardInput()
+    {
+        input = new Vector2(Input.GetAxisRaw("Horizontal"), 
+            Input.GetAxisRaw("Vertical"));
+
+        if (!isAttacking && !isProstrated && !onLadder && !onRope)
+        {
+            if (input.x > 0)
+                sr.flipX = true;
+            else if (input.x < 0)
+                sr.flipX = false;
+        }
+    }
+
+    private void Move()
+    {
+        if (rb.velocity.y < -0.2f)
+            onGround = false;
+        // 지면에 서 있을 때만 가능
+        if (onGround)
+        {
+            if (!isProstrated && !isAttacking)
+                Walking(input);
+
+            if (!isProstrated && !isAttacking
+                && Input.GetKey(KeyCode.LeftAlt))
+                NormalJump();
+
+            if (input.y < 0)
+            {
+                isProstrated = true;
+                velocity.x = 0;
+                if (Input.GetKey(KeyCode.LeftAlt))
+                    StartCoroutine(DownJump());
+            }
+            else
+                isProstrated = false;
+
+            if (isAttacking)
+            {
+                velocity.x = 0;
+            }
+        }
+        else
+        {   // 공중에 있을 때 떨어지는 속도 증가
+            velocity.y += gravity * Time.fixedDeltaTime;
+        }
+
+        if (onLadder || onRope)
+        {
+            Climb();
+        }
+
+        if (Input.GetKey(KeyCode.LeftControl) &&
+            !isAttacking && !isProstrated && !onLadder && !onRope)
+        {
+            StartCoroutine(NormalAttack());
+        }
+        // 플레이어 이동
+        transform.Translate(velocity * Time.fixedDeltaTime);
     }
 
     private void Walking(Vector2 input)
@@ -161,17 +175,31 @@ public class PlayerController : MonoBehaviour
         velocity.y = jumpPower;
     }
 
+    private IEnumerator DownJump()
+    {
+        gameObject.layer = 11;
+        velocity.y = 1;
+        isProstrated = false;
+        yield return new WaitForSeconds(0.5f);
+        gameObject.layer = 9;
+    }
+
     private void Climb()
     {
         onGround = false;
         isWalking = false;
-        this.gameObject.layer = 11;
+        gameObject.layer = 11;
         gravity = 0;
         rb.gravityScale = 0;
         rb.velocity = new Vector2(0, 0);
         velocity.x = 0;
         velocity.y = input.y * moveSpeed;
         animator.speed = Mathf.Abs(velocity.y);
+
+        if (Input.GetKey(KeyCode.LeftAlt) && input.x != 0)
+        {
+            JumpOnClimb();
+        }
     }
 
     private void JumpOnClimb()
@@ -187,7 +215,7 @@ public class PlayerController : MonoBehaviour
     {
         gravity = -9.81f;
         rb.gravityScale = 1;
-        this.gameObject.layer = 9;
+        gameObject.layer = 9;
         animator.speed = 1;
     }
 
