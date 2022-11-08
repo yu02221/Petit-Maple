@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool isProstrated = false;
     private bool isAttacking = false;
     private bool onLadder = false;
+    private bool onRope = false;
 
     public Rigidbody2D rb;
     public SpriteRenderer sr;
@@ -37,17 +38,17 @@ public class PlayerController : MonoBehaviour
         input = new Vector2(Input.GetAxisRaw("Horizontal"), 
             Input.GetAxisRaw("Vertical"));
 
-        if (onLadder)
+        if (onLadder || onRope)
         {
-            Ladder();
+            Climb();
             if (Input.GetKey(KeyCode.LeftAlt) && input.x != 0)
             {
-                LadderJump();
+                JumpOnClimb();
             }
         }
         else
         {
-            OutOfLadder();
+            QuitClimb();
         }
         if (rb.velocity.y < -0.2f)
             onGround = false;
@@ -115,6 +116,15 @@ public class PlayerController : MonoBehaviour
                 transform.position.z);
             onLadder = true;
         }
+        if (col.CompareTag("Rope") && input.y > 0
+            || col.CompareTag("RopeTop") && input.y < 0)
+        {
+            transform.position = new Vector3(
+                col.transform.position.x,
+                transform.position.y,
+                transform.position.z);
+            onRope = true;
+        }
 
         if (col.CompareTag("Portal") && input.y > 0)
         {
@@ -128,6 +138,11 @@ public class PlayerController : MonoBehaviour
             || col.CompareTag("LadderTop") && input.y >= 0)
         {
             onLadder = false;
+        }
+        if (col.CompareTag("Rope") && input.y <= 0
+            || col.CompareTag("RopeTop") && input.y >= 0)
+        {
+            onRope = false;
         }
     }
 
@@ -146,7 +161,7 @@ public class PlayerController : MonoBehaviour
         velocity.y = jumpPower;
     }
 
-    private void Ladder()
+    private void Climb()
     {
         onGround = false;
         isWalking = false;
@@ -159,15 +174,16 @@ public class PlayerController : MonoBehaviour
         animator.speed = Mathf.Abs(velocity.y);
     }
 
-    private void LadderJump()
+    private void JumpOnClimb()
     {
         onLadder = false;
-        OutOfLadder();
+        onRope = false;
+        QuitClimb();
         velocity.x = input.x * 2;
         velocity.y = 2;
     }
 
-    private void OutOfLadder()
+    private void QuitClimb()
     {
         gravity = -9.81f;
         rb.gravityScale = 1;
@@ -189,5 +205,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isWalking", isWalking);
         animator.SetBool("isProstrated", isProstrated);
         animator.SetBool("onLadder", onLadder);
+        animator.SetBool("onRope", onRope);
     }
 }

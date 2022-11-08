@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class GameManager : MonoBehaviour
     public GameObject forest;
     public void MapChange()
     {
-        forest.SetActive(true);
-        village.SetActive(false);
+        SceneManager.LoadScene("Field1");
     }
 }

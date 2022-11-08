@@ -18,8 +18,7 @@ public class CameraWork : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        offset = transform.position - player.transform.position;
-
+        offset = new Vector3(0, transform.position.y - player.transform.position.y, -10);
         float height = Camera.main.orthographicSize;
         float width = height * Camera.main.aspect;
 
