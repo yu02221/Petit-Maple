@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private static Player instance = null;
+    public static Player instance = null;
 
     private void Awake()
     {
@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
         }
         else
         {
-            instance.transform.position = transform.position;
             Destroy(gameObject);
         }
     }

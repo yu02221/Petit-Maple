@@ -75,9 +75,15 @@ public class PlayerController : MonoBehaviour
                 onRope = true;
             }
 
-            if (col.CompareTag("Portal") && input.y > 0)
+            if (col.name == "LeftPortal" && input.y > 0)
             {
-                gm.MapChange();
+                gm.GoLeftField();
+                
+            }
+            if (col.name == "RightPortal" && input.y > 0)
+            {
+                gm.GoRightField();
+                
             }
         }
     }
@@ -180,7 +186,7 @@ public class PlayerController : MonoBehaviour
         gameObject.layer = 11;
         velocity.y = 1;
         isProstrated = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         gameObject.layer = 9;
     }
 
@@ -219,7 +225,7 @@ public class PlayerController : MonoBehaviour
         animator.speed = 1;
     }
 
-    IEnumerator NormalAttack()
+    private IEnumerator NormalAttack()
     {
         isAttacking = true;
         animator.SetTrigger("doAttack");

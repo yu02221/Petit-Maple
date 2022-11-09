@@ -5,10 +5,43 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject village;
-    public GameObject forest;
-    public void MapChange()
+    public static GameManager instance = null;
+    private GameObject player;
+
+    private int currentSceneNumber;
+
+    public bool loadLeftScene = false;
+    public bool loadRightScene = false;
+
+    private void Awake()
     {
-        SceneManager.LoadScene("Field1");
+        if (instance == null)
+        {
+            instance = this;
+
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        player = GameObject.Find("Player");
+        currentSceneNumber = SceneManager.GetActiveScene().buildIndex;
+        
+    }
+
+    public void GoLeftField()
+    {
+        SceneManager.LoadScene(++currentSceneNumber);
+        loadLeftScene = true;
+    }
+    public void GoRightField()
+    {
+        SceneManager.LoadScene(--currentSceneNumber);
+        loadRightScene = true;
     }
 }
