@@ -20,17 +20,29 @@ public class PlayerController : MonoBehaviour
     private bool isAttacking = false;
     private bool onLadder = false;
     private bool onRope = false;
+    private bool inHiddenPortal = false;
 
     public Rigidbody2D rb;
     public SpriteRenderer sr;
     public Animator animator;
     public GameManager gm;
 
+    private Transform hiddenPortalDest;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        print(inHiddenPortal);
+        if (inHiddenPortal && Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            transform.position = hiddenPortalDest.position;
+        }
     }
 
     private void FixedUpdate()
@@ -51,6 +63,7 @@ public class PlayerController : MonoBehaviour
             velocity.y = 0;
         }
     }
+
 
     private void OnTriggerStay2D(Collider2D col)
     {
@@ -84,6 +97,16 @@ public class PlayerController : MonoBehaviour
             {
                 gm.GoRightField();
                 
+            }
+
+            if (col.CompareTag("HiddenPortal"))
+            {
+                inHiddenPortal = true;
+                hiddenPortalDest = col.gameObject.GetComponent<HiddenPortal>().destination;
+            }
+            else
+            {
+                inHiddenPortal = false;
             }
         }
     }

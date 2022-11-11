@@ -1,0 +1,1159 @@
+fileFormatVersion: 2
+guid: ebe40a70d1cced34da0983ca2d5e5262
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 1002
+        width: 165
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 924d09c26b04a3c46a02ad0fb114d94d
+      internalID: 30258422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_1
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1002
+        width: 164
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32acb2b6ea6d56f44be3610b94b36030
+      internalID: 1121899172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_2
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 1002
+        width: 164
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 076e666160e38d84cb8138ee5f95221d
+      internalID: -318584465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_3
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 1002
+        width: 164
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9db9e923da52a6149af41d6c8b45722c
+      internalID: -482777067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_4
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 1002
+        width: 164
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1492fc22611179a4cb260918fa63bc72
+      internalID: 1360457192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_5
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 1002
+        width: 165
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b198fa128fe844ab8aaf2d560bffdb
+      internalID: 1508500545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_6
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 1002
+        width: 164
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 713aef8f477ac824eb6814f2e826c3e1
+      internalID: -791576697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_7
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 1002
+        width: 164
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d862b10c757e1534db6c1ca856fbf5a0
+      internalID: 987730042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_8
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 842
+        width: 172
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5881c749a4198994c93927144fcc6dd9
+      internalID: -446658045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_9
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 842
+        width: 172
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c9ffd3e47b9afb4a82a170902e50d91
+      internalID: 2013268917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_10
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 842
+        width: 175
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9715dfa66bcca904498fc94d51e64bbf
+      internalID: 1199639314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_11
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 843
+        width: 46
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42323660761fc9c4fb504e369b5f2e33
+      internalID: 1075511985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_12
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 842
+        width: 172
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8875de1b66e38f47aaaa02c4d973731
+      internalID: -427098926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_13
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 842
+        width: 172
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3f68c7b74886244faa4a82e08709b13
+      internalID: -395318522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_14
+      rect:
+        serializedVersion: 2
+        x: 1009
+        y: 842
+        width: 177
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e44b8003f6b0c67449ed98e484cb1ace
+      internalID: -553456043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_15
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 683
+        width: 174
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc7ce7ea3f9ccf54e9115aa453e7eb0a
+      internalID: 640204393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_16
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 802
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3413ec2fa9358604e90d38c0be77bcd9
+      internalID: 769650160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_17
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 482
+        width: 175
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d6c91c207df40a40b20e95cb21f5462
+      internalID: 946087374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_18
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 482
+        width: 167
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e01da080201fcf4c9c9fbe1f42f450a
+      internalID: 805640715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_19
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 482
+        width: 158
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb925495c9a6be04dbe0842d3d4be73a
+      internalID: 1668515989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_20
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 482
+        width: 142
+        height: 235
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7a022ba5b6276c49aec2dd5b03d5f58
+      internalID: -664810844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_21
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 482
+        width: 143
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bad3c1901a95114182e3ea4b35ab25a
+      internalID: 433528617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_22
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 482
+        width: 145
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f689b504216a694ab34fcd6808f0b45
+      internalID: -1914752665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_23
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 482
+        width: 142
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d68d18cac124ca841b9f1755872f2acc
+      internalID: -1578662440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_24
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 210
+        width: 65
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bb44bc21776445459fa575d7706a477
+      internalID: -873247025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_25
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 214
+        width: 62
+        height: 235
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96dd1536262e82c4b94c5be4b91d7d2e
+      internalID: -427646581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_26
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 211
+        width: 41
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bb1dd4a6cb6e7142959d8c0c7247073
+      internalID: -1313303179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_27
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 308
+        width: 54
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4435a6449186d72419c0d309f2788c61
+      internalID: 153658263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_28
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 308
+        width: 21
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2cc5b999311806469b0e9e14cb126db
+      internalID: 423045749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_29
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 311
+        width: 35
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45cbf30e43d386e40a7348f6929123aa
+      internalID: 334821113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_30
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 299
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17697cca9d0f6fc40a7621bd77e71ac4
+      internalID: -150587437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_31
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 292
+        width: 35
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08b71497abe6d2d449578cdd70b84f06
+      internalID: 1958100009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_32
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 292
+        width: 49
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbcd817b958f5cf4dbff54da7cf90b61
+      internalID: 2042262292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_33
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 292
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86daecb3e2e17f04f93abd7a3c20dd9e
+      internalID: 1704508862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_34
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 292
+        width: 43
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b09887d60ab7fb049b95f920ad307d98
+      internalID: 16207048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_35
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 271
+        width: 40
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 222e63847cd8842478b1b5447063a5f7
+      internalID: -1847312703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_36
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 18
+        width: 165
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e7131a6a677c5645be1f9284af7a96e
+      internalID: 1837373033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_37
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 18
+        width: 174
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1945a5dfd25a354ba3c9e69eefb2b6b
+      internalID: 1845127919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_38
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 18
+        width: 174
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 296525f954009a542a372fd96abeac32
+      internalID: 895305835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_39
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 18
+        width: 182
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f476331791350246b61614fbdb1db19
+      internalID: 806066396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_40
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 18
+        width: 181
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5619a8d468e39344eae1518a3b3a9bf3
+      internalID: -214246174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_41
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 18
+        width: 191
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e454cabf6a747f419089cbad3c1d5cd
+      internalID: 1795358854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_42
+      rect:
+        serializedVersion: 2
+        x: 1226
+        y: 18
+        width: 191
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9d73482748a5244384aa41f3ebfba75
+      internalID: -953168619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_43
+      rect:
+        serializedVersion: 2
+        x: 1437
+        y: 18
+        width: 191
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a400589f7381214bafc0bb8ab6a1fa8
+      internalID: 314707652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_44
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 18
+        width: 191
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 767fa0b354718d64a9985247ecdd795d
+      internalID: 787395202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - MapleStory - Tauromacis_45
+      rect:
+        serializedVersion: 2
+        x: 1859
+        y: 18
+        width: 191
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc23ac9bd21f8cb489f3c7f8cab0d882
+      internalID: -1016232230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      PC Computer - MapleStory - Tauromacis_33: 1704508862
+      PC Computer - MapleStory - Tauromacis_1: 1121899172
+      PC Computer - MapleStory - Tauromacis_15: 640204393
+      PC Computer - MapleStory - Tauromacis_2: -318584465
+      PC Computer - MapleStory - Tauromacis_36: 1837373033
+      PC Computer - MapleStory - Tauromacis_19: 1668515989
+      PC Computer - MapleStory - Tauromacis_23: -1578662440
+      PC Computer - MapleStory - Tauromacis_24: -873247025
+      PC Computer - MapleStory - Tauromacis_37: 1845127919
+      PC Computer - MapleStory - Tauromacis_43: 314707652
+      PC Computer - MapleStory - Tauromacis_5: 1508500545
+      PC Computer - MapleStory - Tauromacis_7: 987730042
+      PC Computer - MapleStory - Tauromacis_44: 787395202
+      PC Computer - MapleStory - Tauromacis_32: 2042262292
+      PC Computer - MapleStory - Tauromacis_38: 895305835
+      PC Computer - MapleStory - Tauromacis_9: 2013268917
+      PC Computer - MapleStory - Tauromacis_27: 153658263
+      PC Computer - MapleStory - Tauromacis_8: -446658045
+      PC Computer - MapleStory - Tauromacis_10: 1199639314
+      PC Computer - MapleStory - Tauromacis_17: 946087374
+      PC Computer - MapleStory - Tauromacis_41: 1795358854
+      PC Computer - MapleStory - Tauromacis_25: -427646581
+      PC Computer - MapleStory - Tauromacis_6: -791576697
+      PC Computer - MapleStory - Tauromacis_0: 30258422
+      PC Computer - MapleStory - Tauromacis_22: -1914752665
+      PC Computer - MapleStory - Tauromacis_3: -482777067
+      PC Computer - MapleStory - Tauromacis_16: 769650160
+      PC Computer - MapleStory - Tauromacis_39: 806066396
+      PC Computer - MapleStory - Tauromacis_29: 334821113
+      PC Computer - MapleStory - Tauromacis_18: 805640715
+      PC Computer - MapleStory - Tauromacis_40: -214246174
+      PC Computer - MapleStory - Tauromacis_4: 1360457192
+      PC Computer - MapleStory - Tauromacis_21: 433528617
+      PC Computer - MapleStory - Tauromacis_31: 1958100009
+      PC Computer - MapleStory - Tauromacis_11: 1075511985
+      PC Computer - MapleStory - Tauromacis_28: 423045749
+      PC Computer - MapleStory - Tauromacis_13: -395318522
+      PC Computer - MapleStory - Tauromacis_34: 16207048
+      PC Computer - MapleStory - Tauromacis_12: -427098926
+      PC Computer - MapleStory - Tauromacis_30: -150587437
+      PC Computer - MapleStory - Tauromacis_20: -664810844
+      PC Computer - MapleStory - Tauromacis_42: -953168619
+      PC Computer - MapleStory - Tauromacis_35: -1847312703
+      PC Computer - MapleStory - Tauromacis_26: -1313303179
+      PC Computer - MapleStory - Tauromacis_45: -1016232230
+      PC Computer - MapleStory - Tauromacis_14: -553456043
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
