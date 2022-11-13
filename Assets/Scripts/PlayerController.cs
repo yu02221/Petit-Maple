@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer sr;
     public Animator animator;
     public GameManager gm;
+    public LayerMask groundCheckLayerMask;
 
     private Transform hiddenPortalDest;
 
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        print(inHiddenPortal);
+        //print(inHiddenPortal);
         if (inHiddenPortal && Input.GetKeyDown(KeyCode.UpArrow))
         {
             transform.position = hiddenPortalDest.position;
@@ -48,20 +49,12 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         KeyboardInput();
+
+        GroundCheck();
         
         Move();
 
         SetAnimatorBool();
-    }
-
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.CompareTag("Ground") || 
-            col.gameObject.CompareTag("Platform") && velocity.y <= 2.0f)
-        {
-            onGround = true;
-            velocity.y = 0;
-        }
     }
 
 
@@ -104,10 +97,6 @@ public class PlayerController : MonoBehaviour
                 inHiddenPortal = true;
                 hiddenPortalDest = col.gameObject.GetComponent<HiddenPortal>().destination;
             }
-            else
-            {
-                inHiddenPortal = false;
-            }
         }
     }
 
@@ -125,6 +114,8 @@ public class PlayerController : MonoBehaviour
             onRope = false;
             QuitClimb();
         }
+        if (col.CompareTag("HiddenPortal"))
+            inHiddenPortal = false;
     }
 
     private void KeyboardInput()
@@ -139,6 +130,16 @@ public class PlayerController : MonoBehaviour
             else if (input.x < 0)
                 sr.flipX = false;
         }
+    }
+
+    private void GroundCheck()
+    {
+        onGround = Physics2D.OverlapCircle(
+            transform.position, 0.1f, groundCheckLayerMask)
+            && velocity.y <= 2.0f;
+
+        if (onGround)
+            velocity.y = 0;
     }
 
     private void Move()
@@ -172,7 +173,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {   // 공중에 있을 때 떨어지는 속도 증가
-            velocity.y += gravity * Time.fixedDeltaTime;
+            if (velocity.y > -2f)
+                velocity.y += gravity * Time.fixedDeltaTime;
         }
 
         if (onLadder || onRope)

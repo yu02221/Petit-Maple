@@ -231,7 +231,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 141825315}
   destination: {fileID: 864245982}
-  available: 1
 --- !u!61 &141825314
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -463,7 +462,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -3.78, z: 0}
   m_LocalScale: {x: 14, y: 1.42, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 859440193}
   m_Father: {fileID: 1704932180}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
   gravity: -9.81
-  jumpPower: 5
+  jumpPower: 5.2
   groundMask:
     serializedVersion: 2
     m_Bits: 128
@@ -549,6 +549,9 @@ MonoBehaviour:
   sr: {fileID: 0}
   animator: {fileID: 0}
   gm: {fileID: 1830462013}
+  groundCheckLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!95 &398630348
 Animator:
   serializedVersion: 4
@@ -1062,6 +1065,64 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &859440192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 859440193}
+  - component: {fileID: 859440194}
+  m_Layer: 7
+  m_Name: FloorPlatform
+  m_TagString: Platform
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &859440193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859440192}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 313705787}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &859440194
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859440192}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &864245981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,7 +1173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 864245985}
   destination: {fileID: 141825312}
-  available: 1
 --- !u!61 &864245984
 BoxCollider2D:
   m_ObjectHideFlags: 0
