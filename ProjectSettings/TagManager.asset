@@ -14,6 +14,7 @@ TagManager:
   - Rope
   - RopeTop
   - HiddenPortal
+  - Monster
   layers:
   - Default
   - TransparentFX
@@ -28,8 +29,8 @@ TagManager:
   - NPC
   - IgnorePlatform
   - Portal
-  - 
-  - 
+  - PlayerSkill
+  - MonsterSkill
   - 
   - 
   - 

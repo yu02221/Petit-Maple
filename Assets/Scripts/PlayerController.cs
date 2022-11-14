@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
         SetAnimatorBool();
     }
 
-
     private void OnTriggerStay2D(Collider2D col)
     {
         if (!isAttacking)
