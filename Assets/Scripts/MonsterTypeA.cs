@@ -12,7 +12,7 @@ public enum States
 
 public class MonsterTypeA : MonoBehaviour
 {
-    States state;
+    public States state;
 
     private SpriteRenderer sr;
     private Animator anim;
@@ -40,7 +40,7 @@ public class MonsterTypeA : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         moveTime = 0;
-        randomMoveTime = 0;
+        randomMoveTime = 1.0f;
     }
 
     private void Update()
@@ -55,7 +55,7 @@ public class MonsterTypeA : MonoBehaviour
         if (moveTime >= randomMoveTime)
         {
             moveTime = 0;
-            randomMoveTime = Random.Range(3, 5);
+            randomMoveTime = Random.Range(3.0f, 5.0f);
             if (state == States.Move)
             {
                 state = States.Idle;
