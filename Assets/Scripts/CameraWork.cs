@@ -12,13 +12,11 @@ public class CameraWork : MonoBehaviour
     public Collider2D backgroundHeight;
     public Collider2D backgroundWidth;
 
-    public GameObject player;
     private float offset = 1.0f;
     private float cameraSpeed = 5.0f;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         float height = Camera.main.orthographicSize;
         float width = height * Camera.main.aspect;
 
@@ -31,8 +29,8 @@ public class CameraWork : MonoBehaviour
     private void LateUpdate()
     {
         Vector3 target = new Vector3(
-            Mathf.Clamp(player.transform.position.x, backgroundLeftEnd, backgroundRightEnd),
-            Mathf.Clamp(player.transform.position.y + offset, backgroundBottomEnd, backgroundTopEnd),
+            Mathf.Clamp(Player.instance.transform.position.x, backgroundLeftEnd, backgroundRightEnd),
+            Mathf.Clamp(Player.instance.transform.position.y + offset, backgroundBottomEnd, backgroundTopEnd),
             transform.position.z);
 
         transform.position = Vector3.Lerp(transform.position,

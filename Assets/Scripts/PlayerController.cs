@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public SpriteRenderer sr;
     public Animator animator;
-    public GameManager gm;
     public LayerMask groundCheckLayerMask;
 
     private Transform hiddenPortalDest;
@@ -39,7 +38,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //print(inHiddenPortal);
         if (inHiddenPortal && Input.GetKeyDown(KeyCode.UpArrow))
         {
             transform.position = hiddenPortalDest.position;
@@ -82,13 +80,11 @@ public class PlayerController : MonoBehaviour
 
             if (col.name == "LeftPortal" && input.y > 0)
             {
-                gm.GoLeftField();
-                
+                GameManager.instance.GoLeftField();
             }
             if (col.name == "RightPortal" && input.y > 0)
             {
-                gm.GoRightField();
-                
+                GameManager.instance.GoRightField();
             }
 
             if (col.CompareTag("HiddenPortal"))

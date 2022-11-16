@@ -18,6 +18,8 @@ public class MonsterTypeA : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
 
+    private Player player;
+
     public int level = 5;
     public int exp = 5;
     public float maxHp = 15;
@@ -35,6 +37,7 @@ public class MonsterTypeA : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.Find("Player").GetComponent<Player>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -96,7 +99,7 @@ public class MonsterTypeA : MonoBehaviour
         else if (state == States.Hurt)
         {
             anim.SetBool("move", true);
-            Vector2 dir = Player.instance.transform.position - transform.position;
+            Vector2 dir = player.transform.position - transform.position;
             if (dir.x > 0)
             {
                 sr.flipX = true;

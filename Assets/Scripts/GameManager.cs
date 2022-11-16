@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-    private GameObject player;
 
     private int currentSceneNumber;
 
@@ -29,9 +28,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("Player");
         currentSceneNumber = SceneManager.GetActiveScene().buildIndex;
-        
     }
 
     public void GoLeftField()

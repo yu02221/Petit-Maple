@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    
     private void Start()
     {
         string name = gameObject.name;
