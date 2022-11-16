@@ -15,6 +15,7 @@ TagManager:
   - RopeTop
   - HiddenPortal
   - Monster
+  - PlayerSkill
   layers:
   - Default
   - TransparentFX

@@ -175,4 +175,4 @@ MonoBehaviour:
   power: 25
   moveSpeed: 1.5
   leftMoveRange: -2.45
-  RightMoveRange: 3.6
+  rightMoveRange: 3.5

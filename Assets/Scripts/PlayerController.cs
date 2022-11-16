@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 2.0f;
     public float gravity = -9.81f;
     public float jumpPower = 5.0f;
+    public float upJumpPower = 15.0f;
+    public float doubbleJumpPower = 10.0f;
 
     public LayerMask groundMask;
 
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private bool onLadder = false;
     private bool onRope = false;
     private bool inHiddenPortal = false;
+    private bool supperJump = false;
 
     public Rigidbody2D rb;
     public SpriteRenderer sr;
@@ -28,6 +31,10 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundCheckLayerMask;
 
     private Transform hiddenPortalDest;
+
+    public GameObject normalAttackSkill;
+    public GameObject boltSkill;
+    public GameObject boltSkill_up;
 
     private void Start()
     {
@@ -121,9 +128,15 @@ public class PlayerController : MonoBehaviour
         if (!isAttacking && !isProstrated && !onLadder && !onRope)
         {
             if (input.x > 0)
+            {
                 sr.flipX = true;
+                Player.instance.lookDirection = -1;
+            }
             else if (input.x < 0)
+            {
                 sr.flipX = false;
+                Player.instance.lookDirection = 1;
+            }
         }
     }
 
@@ -134,7 +147,10 @@ public class PlayerController : MonoBehaviour
             && velocity.y <= 2.0f;
 
         if (onGround)
+        {
             velocity.y = 0;
+            supperJump = false;
+        }
     }
 
     private void Move()
@@ -170,6 +186,10 @@ public class PlayerController : MonoBehaviour
         {   // 공중에 있을 때 떨어지는 속도 증가
             if (velocity.y > -2f)
                 velocity.y += gravity * Time.fixedDeltaTime;
+            if (!supperJump && Input.GetKeyDown(KeyCode.LeftAlt) && !(onLadder || onRope))
+            {
+                Bolt();
+            }
         }
 
         if (onLadder || onRope)
@@ -199,6 +219,22 @@ public class PlayerController : MonoBehaviour
     {
         onGround = false;
         velocity.y = jumpPower;
+    }
+
+    private void Bolt()
+    {
+        supperJump = true;
+        if (input.y > 0)
+        {
+            Instantiate(boltSkill_up);
+            velocity.y = upJumpPower;
+        }
+        else
+        {
+            Instantiate(boltSkill);
+            velocity.x = doubbleJumpPower * -Player.instance.lookDirection;
+            velocity.y = jumpPower;
+        }
     }
 
     private IEnumerator DownJump()
@@ -249,6 +285,7 @@ public class PlayerController : MonoBehaviour
     {
         isAttacking = true;
         animator.SetTrigger("doAttack");
+        Instantiate(normalAttackSkill);
         yield return new WaitForSeconds(1.0f);
         isAttacking = false;
     }
