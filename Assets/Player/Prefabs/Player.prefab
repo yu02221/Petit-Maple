@@ -193,16 +193,17 @@ MonoBehaviour:
   moveSpeed: 1.5
   gravity: -9.81
   jumpPower: 5.2
+  upJumpPower: 12
+  doubbleJumpPower: 5.2
   groundMask:
     serializedVersion: 2
     m_Bits: 128
-  rb: {fileID: 8445703791134703566}
-  sr: {fileID: 0}
-  animator: {fileID: 0}
   groundCheckLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  normalAttackSkill: {fileID: 0}
+  normalAttackSkill: {fileID: 8721552546973990904, guid: 3ac761c804873e947b8e7cc12e098944, type: 3}
+  boltSkill: {fileID: 9044941291739824074, guid: dc58ce9cb0ca5b74e8a8101a8fdf36b9, type: 3}
+  boltSkill_up: {fileID: 9044941291739824074, guid: 2770bc180af55fb4fa946f1199e7a7e8, type: 3}
 --- !u!114 &8445703791134703156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,3 +216,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec333a67fafae7b4e861615290152c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookDirection: -1
+  tombstone: {fileID: 2957538354814975393, guid: a195f106754e6474291e318244f7d919, type: 3}

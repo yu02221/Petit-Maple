@@ -16,6 +16,7 @@ TagManager:
   - HiddenPortal
   - Monster
   - PlayerSkill
+  - MonsterSkill
   layers:
   - Default
   - TransparentFX

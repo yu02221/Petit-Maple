@@ -7,6 +7,7 @@ public enum States
     Idle,
     Move,
     Hurt,
+    Angry,
     Die,
 }
 
@@ -16,7 +17,6 @@ public class MonsterController : MonoBehaviour
 
     private SpriteRenderer sr;
     private Animator anim;
-    private Rigidbody2D rb;
 
     private Player player;
 
@@ -34,13 +34,13 @@ public class MonsterController : MonoBehaviour
 
     private float randomMoveTime;
     private float moveTime;
+    private float hurtTime;
 
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
 
         moveTime = 0;
         randomMoveTime = 1.0f;
@@ -49,7 +49,7 @@ public class MonsterController : MonoBehaviour
     private void Update()
     {
         SetMoveType();
-        Move();
+        SelectAction();
     }
 
     private void SetMoveType()
@@ -73,64 +73,86 @@ public class MonsterController : MonoBehaviour
         }
     }
 
-    private void Move()
+    private void SelectAction()
     {
-        if (state == States.Idle)
+        switch (state)
         {
-            velocity.x = 0;
+            case States.Idle:
+                velocity.x = 0;
+                break;
+            case States.Move:
+                Move();
+                break;
+            case States.Hurt:
+                HurtAction();
+                break;
+            case States.Angry:
+                Angry();
+                break;
         }
-        else if (state == States.Move)
-        {
-            if (transform.position.x <= leftMoveRange)
-                lookRight = true;
-            if (transform.position.x >= rightMoveRange)
-                lookRight = false;
-            if (lookRight)
-            {
-                sr.flipX = true;
-                velocity.x = moveSpeed;
-            }
-            else
-            {
-                sr.flipX = false;
-                velocity.x = -moveSpeed;
-            }
-        }
-        else if (state == States.Hurt)
-        {
-            anim.SetBool("move", true);
-            Vector2 dir = player.transform.position - transform.position;
-            if (dir.x > 0.5f)
-            {
-                sr.flipX = true;
-                velocity.x = moveSpeed;
-            }
-            else if (dir.x < -0.5f)
-            {
-                sr.flipX = false;
-                velocity.x =  -moveSpeed;
-            }
-        }
+
         transform.Translate(velocity * Time.deltaTime);
         transform.position = new Vector3(
             Mathf.Clamp(transform.position.x, leftMoveRange, rightMoveRange),
             transform.position.y,
             transform.position.z);
-        
+    }
+
+    private void Move()
+    {
+        if (transform.position.x <= leftMoveRange)
+            lookRight = true;
+        if (transform.position.x >= rightMoveRange)
+            lookRight = false;
+        if (lookRight)
+        {
+            sr.flipX = true;
+            velocity.x = moveSpeed;
+        }
+        else
+        {
+            sr.flipX = false;
+            velocity.x = -moveSpeed;
+        }
     }
 
     public void Hurt(float damage)
     {
+        print(damage);
         if (hp > 0)
         {
+            hurtTime = 0;
             state = States.Hurt;
             anim.SetTrigger("hurt");
             hp -= damage;
-        }
 
-        if (hp <= 0)
+            if (hp <= 0)
+                Die();
+        }
+    }
+
+    private void HurtAction()
+    {
+        hurtTime += Time.deltaTime;
+        if (hurtTime > 0.5f)
+            state = States.Angry;
+
+        velocity.x = Player.instance.lookDirection;
+    }
+
+    private void Angry()
+    {
+        anim.SetBool("move", true);
+        Vector2 dir = player.transform.position - transform.position;
+        if (dir.x > 0.5f)
         {
-            Die();
+            sr.flipX = true;
+            velocity.x = moveSpeed;
+        }
+        else if (dir.x < -0.5f)
+        {
+            sr.flipX = false;
+            velocity.x = -moveSpeed;
         }
     }
 
@@ -139,6 +161,7 @@ public class MonsterController : MonoBehaviour
         velocity.x = 0;
         state = States.Die;
         anim.SetTrigger("die");
+        Player.instance.IncreaseExp(exp);
         Destroy(gameObject, 1.0f);
     }
 }

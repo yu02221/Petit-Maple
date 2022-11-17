@@ -624,26 +624,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8445703791134703563, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
-      propertyPath: boltSkill
-      value: 
-      objectReference: {fileID: 9044941291739824074, guid: dc58ce9cb0ca5b74e8a8101a8fdf36b9, type: 3}
-    - target: {fileID: 8445703791134703563, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
-      propertyPath: upJumpPower
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8445703791134703563, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
-      propertyPath: boltSkill_up
-      value: 
-      objectReference: {fileID: 9044941291739824074, guid: 2770bc180af55fb4fa946f1199e7a7e8, type: 3}
-    - target: {fileID: 8445703791134703563, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
-      propertyPath: doubbleJumpPower
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8445703791134703563, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
-      propertyPath: normalAttackSkill
-      value: 
-      objectReference: {fileID: 8721552546973990904, guid: 3ac761c804873e947b8e7cc12e098944, type: 3}
     - target: {fileID: 8445703791134703565, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
       propertyPath: m_Name
       value: Player
@@ -704,10 +684,6 @@ PrefabInstance:
     - target: {fileID: 4790970186868731892, guid: d9921a3312cd6b54e9845e189e3ebb7e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4790970186868731895, guid: d9921a3312cd6b54e9845e189e3ebb7e, type: 3}
-      propertyPath: rightMoveRange
-      value: -5.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9921a3312cd6b54e9845e189e3ebb7e, type: 3}

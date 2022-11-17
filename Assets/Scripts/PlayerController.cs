@@ -25,9 +25,9 @@ public class PlayerController : MonoBehaviour
     private bool inHiddenPortal = false;
     private bool supperJump = false;
 
-    public Rigidbody2D rb;
-    public SpriteRenderer sr;
-    public Animator animator;
+    private Rigidbody2D rb;
+    private SpriteRenderer sr;
+    private Animator anim;
     public LayerMask groundCheckLayerMask;
 
     private Transform hiddenPortalDest;
@@ -40,14 +40,21 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
+        //print($"onGround : {onGround}, velocity.y : {velocity.y}");
         if (inHiddenPortal && Input.GetKeyDown(KeyCode.UpArrow))
         {
             transform.position = hiddenPortalDest.position;
+        }
+
+        if (!onGround && !supperJump && !(onLadder || onRope) &&
+            Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            Bolt();
         }
     }
 
@@ -130,12 +137,12 @@ public class PlayerController : MonoBehaviour
             if (input.x > 0)
             {
                 sr.flipX = true;
-                Player.instance.lookDirection = -1;
+                Player.instance.lookDirection = 1;
             }
             else if (input.x < 0)
             {
                 sr.flipX = false;
-                Player.instance.lookDirection = 1;
+                Player.instance.lookDirection = -1;
             }
         }
     }
@@ -184,12 +191,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {   // 공중에 있을 때 떨어지는 속도 증가
-            if (velocity.y > -2f)
-                velocity.y += gravity * Time.fixedDeltaTime;
-            if (!supperJump && Input.GetKeyDown(KeyCode.LeftAlt) && !(onLadder || onRope))
-            {
-                Bolt();
-            }
+            velocity.y += gravity * Time.fixedDeltaTime;
+            velocity.y = Mathf.Clamp(velocity.y, 0, upJumpPower);
         }
 
         if (onLadder || onRope)
@@ -232,7 +235,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             Instantiate(boltSkill);
-            velocity.x = doubbleJumpPower * -Player.instance.lookDirection;
+            velocity.x = doubbleJumpPower * Player.instance.lookDirection;
             velocity.y = jumpPower;
         }
     }
@@ -256,7 +259,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
         velocity.x = 0;
         velocity.y = input.y * moveSpeed;
-        animator.speed = Mathf.Abs(velocity.y);
+        anim.speed = Mathf.Abs(velocity.y);
 
         if (Input.GetKey(KeyCode.LeftAlt) && input.x != 0)
         {
@@ -278,13 +281,13 @@ public class PlayerController : MonoBehaviour
         gravity = -9.81f;
         rb.gravityScale = 1;
         gameObject.layer = 9;
-        animator.speed = 1;
+        anim.speed = 1;
     }
 
     private IEnumerator NormalAttack()
     {
         isAttacking = true;
-        animator.SetTrigger("doAttack");
+        anim.SetTrigger("doAttack");
         Instantiate(normalAttackSkill);
         yield return new WaitForSeconds(1.0f);
         isAttacking = false;
@@ -292,10 +295,10 @@ public class PlayerController : MonoBehaviour
 
     private void SetAnimatorBool()
     {
-        animator.SetBool("onGround", onGround);
-        animator.SetBool("isWalking", isWalking);
-        animator.SetBool("isProstrated", isProstrated);
-        animator.SetBool("onLadder", onLadder);
-        animator.SetBool("onRope", onRope);
+        anim.SetBool("onGround", onGround);
+        anim.SetBool("isWalking", isWalking);
+        anim.SetBool("isProstrated", isProstrated);
+        anim.SetBool("onLadder", onLadder);
+        anim.SetBool("onRope", onRope);
     }
 }
