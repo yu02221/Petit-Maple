@@ -5,7 +5,14 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public Animator BtnBoard;
+    private string playerName;
     public void OnClickedNewStartBtn()
+    {
+        GameManager.instance.ResetPlayerInfo(playerName);
+        StartCoroutine(BtnBoardDown());
+    }
+
+    public void OnClickedContinueBtn()
     {
         StartCoroutine(BtnBoardDown());
     }

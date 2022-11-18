@@ -41,4 +41,18 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(--currentSceneNumber);
         loadRightScene = true;
     }
+
+    public void ResetPlayerInfo(string playerName)
+    {
+        PlayerPrefs.SetString("playerName", playerName);
+        PlayerPrefs.SetInt("level", 1);
+        PlayerPrefs.SetFloat("exp", 0);
+        PlayerPrefs.SetFloat("maxExp", 10);
+        PlayerPrefs.SetFloat("power", 10);
+        PlayerPrefs.SetFloat("maxHp", 100);
+        PlayerPrefs.SetFloat("hp", 100);
+        PlayerPrefs.SetFloat("maxMp", 50);
+        PlayerPrefs.SetFloat("mp", 50);
+        PlayerPrefs.Save();
+    }
 }

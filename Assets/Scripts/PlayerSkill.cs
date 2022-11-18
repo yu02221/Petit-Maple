@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerSkill : MonoBehaviour
 {
     public float damage;
+    public float needMp;
     public float cooltime;
     public float runtime;
     public float xPos;

@@ -217,4 +217,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookDirection: -1
+  expSlider: {fileID: 0}
+  hpSlider: {fileID: 0}
+  mpSlider: {fileID: 0}
+  nameTxt: {fileID: 0}
+  levelTxt: {fileID: 0}
+  expTxt: {fileID: 0}
+  hpTxt: {fileID: 0}
+  mpTxt: {fileID: 0}
   tombstone: {fileID: 2957538354814975393, guid: a195f106754e6474291e318244f7d919, type: 3}

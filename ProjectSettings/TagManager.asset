@@ -17,6 +17,7 @@ TagManager:
   - Monster
   - PlayerSkill
   - MonsterSkill
+  - MinimapCamera
   layers:
   - Default
   - TransparentFX
@@ -34,7 +35,7 @@ TagManager:
   - PlayerSkill
   - MonsterSkill
   - 
-  - 
+  - MinimapCube
   - 
   - 
   - 
