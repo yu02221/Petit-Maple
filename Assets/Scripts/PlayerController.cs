@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
+        anim =  GetComponent<Animator>();
     }
 
     private void Update()
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         if (!onGround && !supperJump && !(onLadder || onRope) &&
             Input.GetKeyDown(KeyCode.LeftAlt))
         {
-            Bolt();
+            //Bolt();
         }
     }
 
@@ -114,6 +114,7 @@ public class PlayerController : MonoBehaviour
         if (col.CompareTag("Ladder") && input.y <= 0
             || col.CompareTag("LadderTop") && input.y >= 0)
         {
+            print("ladder out");
             onLadder = false;
             QuitClimb();
         }
@@ -223,7 +224,7 @@ public class PlayerController : MonoBehaviour
         onGround = false;
         velocity.y = jumpPower;
     }
-
+    /*
     private void Bolt()
     {
         supperJump = true;
@@ -239,6 +240,7 @@ public class PlayerController : MonoBehaviour
             velocity.y = jumpPower;
         }
     }
+    */
 
     private IEnumerator DownJump()
     {

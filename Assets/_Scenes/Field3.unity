@@ -563,6 +563,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8445703791134703156, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
+      propertyPath: hpTxt
+      value: 
+      objectReference: {fileID: 1474204831}
+    - target: {fileID: 8445703791134703156, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
+      propertyPath: mpTxt
+      value: 
+      objectReference: {fileID: 1432104319}
+    - target: {fileID: 8445703791134703156, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
+      propertyPath: expTxt
+      value: 
+      objectReference: {fileID: 1948759427}
+    - target: {fileID: 8445703791134703156, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
+      propertyPath: nameTxt
+      value: 
+      objectReference: {fileID: 443128203}
+    - target: {fileID: 8445703791134703156, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
+      propertyPath: hpSlider
+      value: 
+      objectReference: {fileID: 171317568}
+    - target: {fileID: 8445703791134703156, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
+      propertyPath: levelTxt
+      value: 
+      objectReference: {fileID: 2125308782}
+    - target: {fileID: 8445703791134703156, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
+      propertyPath: mpSlider
+      value: 
+      objectReference: {fileID: 365463965}
+    - target: {fileID: 8445703791134703156, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
+      propertyPath: expSlider
+      value: 
+      objectReference: {fileID: 1004928156}
     - target: {fileID: 8445703791134703561, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3751,6 +3783,7 @@ GameObject:
   - component: {fileID: 1377040975}
   - component: {fileID: 1377040974}
   - component: {fileID: 1377040973}
+  - component: {fileID: 1377040977}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3842,6 +3875,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1377040977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377040972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7deb7b779173e9347bb7e1f90dbbc5fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1382907149
 GameObject:
   m_ObjectHideFlags: 0
