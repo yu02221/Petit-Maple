@@ -9,23 +9,19 @@ public class UIManager : MonoBehaviour
     public void OnClickedNewStartBtn()
     {
         GameManager.instance.ResetPlayerInfo(playerName);
-        StartCoroutine(BtnBoardDown());
+        GameManager.instance.loadNewScene = true;
+        SceneManager.LoadScene(PlayerPrefs.GetInt("currentSceneNumber"));
     }
 
     public void OnClickedContinueBtn()
     {
-        StartCoroutine(BtnBoardDown());
+        Player.instance.gameObject.SetActive(true);
+        GameManager.instance.loadNewScene = true;
+        SceneManager.LoadScene(PlayerPrefs.GetInt("currentSceneNumber"));
     }
 
     public void OnClickedQuitButton()
     {
         Application.Quit();
-    }
-
-    IEnumerator BtnBoardDown()
-    {
-        BtnBoard.SetBool("goNextScene", true);
-        yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene("Village");
     }
 }

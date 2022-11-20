@@ -10,7 +10,8 @@ public class MonsterSkill : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.GetComponent<Player>().Hurt(power);
+            float dir = (collision.transform.position - transform.position).normalized.x;
+            collision.GetComponent<Player>().Hurt(power, dir);
         }
     }
 }

@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public int lookDirection = -1;   // left : -1, right : 1
 
     private Animator anim;
+    private PlayerController pc;
 
     private string playerName;
     private int level;
@@ -22,6 +23,10 @@ public class Player : MonoBehaviour
     private float mp;
     private float maxMp;
 
+    private int potionCount = 10;
+
+    private bool unbeatable = false;
+
     public Slider expSlider;
     public Slider hpSlider;
     public Slider mpSlider;
@@ -30,8 +35,11 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI expTxt;
     public TextMeshProUGUI hpTxt;
     public TextMeshProUGUI mpTxt;
+    public TextMeshProUGUI potionCountTxt;
 
     public GameObject tombstone;
+    public GameObject deadWindow;
+
 
     private void Awake()
     {
@@ -50,15 +58,19 @@ public class Player : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+        pc = GetComponent<PlayerController>();
 
-        GameManager.instance.ResetPlayerInfo("Player");
         GetStatus();
-        
+        potionCountTxt.text = potionCount.ToString();
     }
 
     private void Update()
     {
+        SetStatus();
         SetUI();
+
+        if (potionCount > 0 && Input.GetKeyDown(KeyCode.Delete))
+            DrinkPotion();
     }
 
     private void GetStatus()
@@ -72,6 +84,23 @@ public class Player : MonoBehaviour
         hp = PlayerPrefs.GetFloat("hp");
         maxMp = PlayerPrefs.GetFloat("maxMp");
         mp = PlayerPrefs.GetFloat("mp");
+        potionCount = PlayerPrefs.GetInt("potionCount");
+    }
+
+    private void SetStatus()
+    {
+        PlayerPrefs.SetInt("currentSceneNumber", GameManager.instance.currentSceneNumber);
+        PlayerPrefs.SetString("playerName", playerName);
+        PlayerPrefs.SetInt("level", level);
+        PlayerPrefs.SetFloat("exp", exp);
+        PlayerPrefs.SetFloat("maxExp", maxExp);
+        PlayerPrefs.SetFloat("power", Power);
+        PlayerPrefs.SetFloat("maxHp", maxHp);
+        PlayerPrefs.SetFloat("hp", hp);
+        PlayerPrefs.SetFloat("maxMp", maxMp);
+        PlayerPrefs.SetFloat("mp", mp);
+        PlayerPrefs.SetInt("potionCount", potionCount);
+        PlayerPrefs.Save();
     }
 
     private void SetUI()
@@ -88,7 +117,6 @@ public class Player : MonoBehaviour
 
     public void IncreaseExp(int monsterExp)
     {
-        print($"{level}, {exp}");
         exp += monsterExp;
         if (exp >= maxExp)
             LevelUp();
@@ -106,12 +134,13 @@ public class Player : MonoBehaviour
         mp = maxMp;
     }
 
-    public void Hurt(float damage)
+    public void Hurt(float damage, float dir)
     {
-        if (hp > 0)
+        if (hp > 0 && !unbeatable)
         {
             hp -= damage;
-
+            pc.HurtAction(dir);
+            StartCoroutine(Unbeatable(0.5f));
             if (hp <= 0)
             {
                 hp = 0;
@@ -125,8 +154,31 @@ public class Player : MonoBehaviour
         exp -= maxExp * 0.1f;
         if (exp < 0)
             exp = 0;
-
-        anim.SetTrigger("die");
+        pc.dead = true;
         Instantiate(tombstone);
+        deadWindow.SetActive(true);
+    }
+
+    public void Resurrection()
+    {
+        deadWindow.SetActive(false);
+        hp = maxHp * 0.3f;
+        pc.dead = false;
+        GameManager.instance.GoToVillage();
+    }
+
+    private IEnumerator Unbeatable(float time)
+    {
+        unbeatable = true;
+        yield return new WaitForSeconds(time);
+        unbeatable = false;
+    }
+
+    private void DrinkPotion()
+    {
+        hp = maxHp;
+        mp = maxMp;
+        potionCount--;
+        potionCountTxt.text = potionCount.ToString();
     }
 }

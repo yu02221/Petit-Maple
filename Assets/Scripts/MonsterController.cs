@@ -118,7 +118,6 @@ public class MonsterController : MonoBehaviour
 
     public void Hurt(float damage)
     {
-        print(damage);
         if (hp > 0)
         {
             hurtTime = 0;

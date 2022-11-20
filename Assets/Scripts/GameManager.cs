@@ -7,8 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    private int currentSceneNumber;
+    public int currentSceneNumber;
 
+    public bool loadNewScene = false;
     public bool loadLeftScene = false;
     public bool loadRightScene = false;
 
@@ -42,8 +43,10 @@ public class GameManager : MonoBehaviour
         loadRightScene = true;
     }
 
+
     public void ResetPlayerInfo(string playerName)
     {
+        PlayerPrefs.SetInt("currentSceneNumber", 1);
         PlayerPrefs.SetString("playerName", playerName);
         PlayerPrefs.SetInt("level", 1);
         PlayerPrefs.SetFloat("exp", 0);
@@ -53,6 +56,14 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("hp", 100);
         PlayerPrefs.SetFloat("maxMp", 50);
         PlayerPrefs.SetFloat("mp", 50);
+        PlayerPrefs.SetInt("potionCount", 10);
         PlayerPrefs.Save();
+    }
+
+    public void GoToVillage()
+    {
+        loadNewScene = true;
+        currentSceneNumber = 1;
+        SceneManager.LoadScene(1);
     }
 }

@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float upJumpPower = 15.0f;
     public float doubbleJumpPower = 10.0f;
 
+    private float hurtTime;
+
     public LayerMask groundMask;
 
     private Vector2 input;
@@ -23,7 +25,8 @@ public class PlayerController : MonoBehaviour
     private bool onLadder = false;
     private bool onRope = false;
     private bool inHiddenPortal = false;
-    private bool supperJump = false;
+    private bool isHurt = false;
+    public bool dead;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -45,26 +48,24 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //print($"onGround : {onGround}, velocity.y : {velocity.y}");
-        if (inHiddenPortal && Input.GetKeyDown(KeyCode.UpArrow))
+        if (!dead && inHiddenPortal && Input.GetKeyDown(KeyCode.UpArrow))
         {
             transform.position = hiddenPortalDest.position;
-        }
-
-        if (!onGround && !supperJump && !(onLadder || onRope) &&
-            Input.GetKeyDown(KeyCode.LeftAlt))
-        {
-            //Bolt();
         }
     }
 
     private void FixedUpdate()
     {
-        KeyboardInput();
+        if (!dead)
+        {
+            KeyboardInput();
 
-        GroundCheck();
-        
-        Move();
+            GroundCheck();
+
+            Move();
+        }
+        else
+            rb.velocity = new Vector2(0, 0);
 
         SetAnimatorBool();
     }
@@ -114,7 +115,6 @@ public class PlayerController : MonoBehaviour
         if (col.CompareTag("Ladder") && input.y <= 0
             || col.CompareTag("LadderTop") && input.y >= 0)
         {
-            print("ladder out");
             onLadder = false;
             QuitClimb();
         }
@@ -157,7 +157,6 @@ public class PlayerController : MonoBehaviour
         if (onGround)
         {
             velocity.y = 0;
-            supperJump = false;
         }
     }
 
@@ -168,10 +167,10 @@ public class PlayerController : MonoBehaviour
         // 지면에 서 있을 때만 가능
         if (onGround)
         {
-            if (!isProstrated && !isAttacking)
+            if (!isProstrated && !isAttacking && !isHurt)
                 Walking(input);
 
-            if (!isProstrated && !isAttacking
+            if (!isProstrated && !isAttacking && !isHurt
                 && Input.GetKey(KeyCode.LeftAlt))
                 NormalJump();
 
@@ -295,6 +294,13 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
     }
 
+    public void HurtAction(float dir)
+    {
+        anim.SetTrigger("hurt");
+        rb.AddForce(new Vector2(dir * 100, 100));
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -2, 2), Mathf.Clamp(rb.velocity.y, -2, 2));
+    }
+
     private void SetAnimatorBool()
     {
         anim.SetBool("onGround", onGround);
@@ -302,5 +308,6 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isProstrated", isProstrated);
         anim.SetBool("onLadder", onLadder);
         anim.SetBool("onRope", onRope);
+        anim.SetBool("die", dead);
     }
 }

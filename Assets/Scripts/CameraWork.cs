@@ -24,6 +24,7 @@ public class CameraWork : MonoBehaviour
         backgroundRightEnd = backgroundWidth.bounds.max.x - width;
         backgroundTopEnd = backgroundHeight.bounds.max.y - height;
         backgroundBottomEnd = backgroundHeight.bounds.min.y + height;
+
     }
 
     private void LateUpdate()
