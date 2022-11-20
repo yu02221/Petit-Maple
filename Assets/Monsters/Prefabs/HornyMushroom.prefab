@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0191b1cc7fecf8b4b8d399b799afe9ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mc: {fileID: 7337509991688075907}
   power: 80
 --- !u!1 &5440504790269911149
 GameObject:
@@ -273,6 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  spawnPoint: {fileID: 0}
   level: 20
   exp: 75
   maxHp: 250

@@ -304,10 +304,11 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 128
+  dead: 0
   groundCheckLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  normalAttackSkill: {fileID: 8721552546973990904, guid: 3ac761c804873e947b8e7cc12e098944, type: 3}
+  normalAttackSkill: {fileID: 7305774123532443498, guid: f34d05c89e8779e4da41127550329177, type: 3}
   boltSkill: {fileID: 9044941291739824074, guid: dc58ce9cb0ca5b74e8a8101a8fdf36b9, type: 3}
   boltSkill_up: {fileID: 9044941291739824074, guid: 2770bc180af55fb4fa946f1199e7a7e8, type: 3}
 --- !u!114 &8445703791134703156
@@ -331,5 +332,6 @@ MonoBehaviour:
   expTxt: {fileID: 0}
   hpTxt: {fileID: 0}
   mpTxt: {fileID: 0}
+  potionCountTxt: {fileID: 0}
   tombstone: {fileID: 2957538354814975393, guid: a195f106754e6474291e318244f7d919, type: 3}
   deadWindow: {fileID: 0}

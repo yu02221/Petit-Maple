@@ -289,8 +289,9 @@ public class PlayerController : MonoBehaviour
     {
         isAttacking = true;
         anim.SetTrigger("doAttack");
+        yield return new WaitForSeconds(0.5f);
         Instantiate(normalAttackSkill);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         isAttacking = false;
     }
 

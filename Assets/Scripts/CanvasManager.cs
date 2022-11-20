@@ -9,8 +9,6 @@ public class CanvasManager : MonoBehaviour
 
     public GameObject MenuBar;
 
-    private bool activeMenueBtn = false;
-
     private void Awake()
     {
         if (instance == null)
@@ -27,14 +25,12 @@ public class CanvasManager : MonoBehaviour
 
     public void OnClickMenuBtn()
     {
-        activeMenueBtn = !activeMenueBtn;
-        MenuBar.SetActive(activeMenueBtn);
+        MenuBar.SetActive(!MenuBar.activeSelf);
     }
 
     public void OnClickQuitBtn()
     {
         PlayerPrefs.Save();
-        activeMenueBtn = false;
         MenuBar.SetActive(false);
         Player.instance.gameObject.SetActive(false);
         SceneManager.LoadScene(0);

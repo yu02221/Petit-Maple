@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
+    private SpawnPoint[] spawnPoints;
+    private float spawnTime = 3;
+
     public int currentSceneNumber;
 
     public bool loadNewScene = false;
@@ -30,6 +33,24 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         currentSceneNumber = SceneManager.GetActiveScene().buildIndex;
+
+        spawnPoints = GameObject.Find("SpawnPoints").GetComponentsInChildren<SpawnPoint>();
+    }
+
+    private void Update()
+    {
+        spawnTime -= Time.deltaTime;
+        if (spawnTime < 0)
+        {
+            spawnTime = 10;
+            for (int i = 0; i < spawnPoints.Length; i++)
+            {
+                if (!spawnPoints[i].isSpawned)
+                {
+                    spawnPoints[i].MonsterSpawn();
+                }
+            }
+        }
     }
 
     public void GoLeftField()

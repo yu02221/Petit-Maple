@@ -20,6 +20,8 @@ public class MonsterController : MonoBehaviour
 
     private Player player;
 
+    public SpawnPoint spawnPoint;
+
     public int level = 5;
     public int exp = 5;
     public float maxHp = 15;
@@ -126,7 +128,7 @@ public class MonsterController : MonoBehaviour
             hp -= damage;
 
             if (hp <= 0)
-                Die();
+                StartCoroutine(Die());
         }
     }
 
@@ -155,12 +157,20 @@ public class MonsterController : MonoBehaviour
         }
     }
 
-    private void Die()
+    private IEnumerator Die()
     {
         velocity.x = 0;
         state = States.Die;
         anim.SetTrigger("die");
         Player.instance.IncreaseExp(exp);
-        Destroy(gameObject, 1.0f);
+        yield return new WaitForSeconds(1.0f);
+        gameObject.SetActive(false);
+        spawnPoint.isSpawned = false;
+    }
+
+    public void Respawn()
+    {
+        hp = maxHp;
+        state = States.Idle;
     }
 }
