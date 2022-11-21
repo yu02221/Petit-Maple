@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     private SpawnPoint[] spawnPoints;
-    private float spawnTime = 3;
+    private float spawnTime = 1;
 
     public int currentSceneNumber;
 
@@ -30,15 +30,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+
+    private void Update()
     {
         currentSceneNumber = SceneManager.GetActiveScene().buildIndex;
 
         spawnPoints = GameObject.Find("SpawnPoints").GetComponentsInChildren<SpawnPoint>();
-    }
 
-    private void Update()
-    {
         spawnTime -= Time.deltaTime;
         if (spawnTime < 0)
         {
@@ -52,16 +50,21 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+    public void ResetSpawnTime()
+    {
+        spawnTime = 1;
+    }
     public void GoLeftField()
     {
         SceneManager.LoadScene(++currentSceneNumber);
         loadLeftScene = true;
+        ResetSpawnTime();
     }
     public void GoRightField()
     {
         SceneManager.LoadScene(--currentSceneNumber);
         loadRightScene = true;
+        ResetSpawnTime();
     }
 
 

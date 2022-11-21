@@ -10,6 +10,7 @@ public class PlayerSpawn : MonoBehaviour
         {
             Player.instance.transform.position = transform.position;
             GameManager.instance.loadNewScene = false;
+            GameManager.instance.ResetSpawnTime();
         }
     }
 }

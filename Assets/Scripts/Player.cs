@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
             DrinkPotion();
     }
 
-    private void GetStatus()
+    public void GetStatus()
     {
         playerName = PlayerPrefs.GetString("playerName");
         level = PlayerPrefs.GetInt("level");

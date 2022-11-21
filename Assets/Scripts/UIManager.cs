@@ -9,13 +9,22 @@ public class UIManager : MonoBehaviour
     public void OnClickedNewStartBtn()
     {
         GameManager.instance.ResetPlayerInfo(playerName);
+        if (Player.instance != null)
+        {
+            Player.instance.gameObject.SetActive(true);
+            Player.instance.GetStatus();
+        }
         GameManager.instance.loadNewScene = true;
         SceneManager.LoadScene(PlayerPrefs.GetInt("currentSceneNumber"));
     }
 
     public void OnClickedContinueBtn()
     {
-        Player.instance.gameObject.SetActive(true);
+        if (Player.instance != null)
+        {
+            Player.instance.gameObject.SetActive(true);
+            Player.instance.GetStatus();
+        }
         GameManager.instance.loadNewScene = true;
         SceneManager.LoadScene(PlayerPrefs.GetInt("currentSceneNumber"));
     }
