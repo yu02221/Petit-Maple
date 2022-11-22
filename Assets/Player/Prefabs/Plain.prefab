@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  needMp: 10
   cooltime: 0
   runtime: 1
   xPos: -1

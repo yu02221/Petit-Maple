@@ -16,6 +16,8 @@ public class PlayerSkill : MonoBehaviour
 
     private void Start()
     {
+        Player.instance.Mp -= needMp;
+
         col = GetComponent<Collider2D>();
         if (col != null)
             StartCoroutine(RemoveCollider());

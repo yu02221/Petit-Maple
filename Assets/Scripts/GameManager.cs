@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     public bool loadLeftScene = false;
     public bool loadRightScene = false;
 
+    private AudioSource audioSrc;
+    public AudioClip btnMouseOverSnd;
+    public AudioClip btnMouseClickSnd;
+
     private void Awake()
     {
         if (instance == null)
@@ -28,6 +32,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        audioSrc = GetComponent<AudioSource>();
     }
 
 
@@ -81,6 +90,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("maxMp", 50);
         PlayerPrefs.SetFloat("mp", 50);
         PlayerPrefs.SetInt("potionCount", 10);
+        PlayerPrefs.SetInt("meso", 100);
         PlayerPrefs.Save();
     }
 
@@ -89,5 +99,17 @@ public class GameManager : MonoBehaviour
         loadNewScene = true;
         currentSceneNumber = 1;
         SceneManager.LoadScene(1);
+    }
+
+    public void PlayBtnMouseOverSound()
+    {
+        audioSrc.clip = btnMouseOverSnd;
+        audioSrc.Play();
+    }
+
+    public void PlayBtnMouseClickSound()
+    {
+        audioSrc.clip = btnMouseClickSnd;
+        audioSrc.Play();
     }
 }

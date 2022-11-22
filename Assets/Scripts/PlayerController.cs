@@ -35,15 +35,21 @@ public class PlayerController : MonoBehaviour
 
     private Transform hiddenPortalDest;
 
-    public GameObject normalAttackSkill;
-    public GameObject boltSkill;
-    public GameObject boltSkill_up;
+    public GameObject normalAttack;
+    public GameObject plain;
+    public GameObject marker;
+
+    private AudioSource audioSrc;
+    public AudioClip jumpSnd;
+    public AudioClip normalAttackSnd;
+    public AudioClip plainSnd;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim =  GetComponent<Animator>();
+        audioSrc = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -205,6 +211,13 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(NormalAttack());
         }
+
+        if (Input.GetKey(KeyCode.A) &&
+            !isAttacking && !isProstrated && !onLadder && !onRope)
+        {
+            if (Player.instance.Mp >= plain.GetComponent<PlayerSkill>().needMp)
+                StartCoroutine(Plain());
+        }
         // 플레이어 이동
         transform.Translate(velocity * Time.fixedDeltaTime);
     }
@@ -220,29 +233,19 @@ public class PlayerController : MonoBehaviour
 
     private void NormalJump()
     {
+        audioSrc.clip = jumpSnd;
+        audioSrc.Play();
+
         onGround = false;
         velocity.y = jumpPower;
     }
-    /*
-    private void Bolt()
-    {
-        supperJump = true;
-        if (input.y > 0)
-        {
-            Instantiate(boltSkill_up);
-            velocity.y = upJumpPower;
-        }
-        else
-        {
-            Instantiate(boltSkill);
-            velocity.x = doubbleJumpPower * Player.instance.lookDirection;
-            velocity.y = jumpPower;
-        }
-    }
-    */
+
 
     private IEnumerator DownJump()
     {
+        audioSrc.clip = jumpSnd;
+        audioSrc.Play();
+
         gameObject.layer = 11;
         velocity.y = 1;
         isProstrated = false;
@@ -270,6 +273,9 @@ public class PlayerController : MonoBehaviour
 
     private void JumpOnClimb()
     {
+        audioSrc.clip = jumpSnd;
+        audioSrc.Play();
+
         onLadder = false;
         onRope = false;
         QuitClimb();
@@ -287,10 +293,26 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator NormalAttack()
     {
+        audioSrc.clip = normalAttackSnd;
+        audioSrc.Play();
+
         isAttacking = true;
         anim.SetTrigger("doAttack");
         yield return new WaitForSeconds(0.5f);
-        Instantiate(normalAttackSkill);
+        Instantiate(normalAttack);
+        yield return new WaitForSeconds(0.5f);
+        isAttacking = false;
+    }
+
+    private IEnumerator Plain()
+    {
+        audioSrc.clip = plainSnd;
+        audioSrc.Play();
+
+        isAttacking = true;
+        anim.SetTrigger("doAttack");
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(plain);
         yield return new WaitForSeconds(0.5f);
         isAttacking = false;
     }

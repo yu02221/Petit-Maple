@@ -20,12 +20,15 @@ public class Player : MonoBehaviour
     public float Power { get; private set; }
     private float hp;
     private float maxHp;
-    private float mp;
+    public float Mp { get; set; }
     private float maxMp;
 
     private int potionCount = 10;
+    public int Meso { get; private set; }
 
     private bool unbeatable = false;
+
+    public float sliderSpeed;
 
     public Slider expSlider;
     public Slider hpSlider;
@@ -36,9 +39,15 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI hpTxt;
     public TextMeshProUGUI mpTxt;
     public TextMeshProUGUI potionCountTxt;
+    public TextMeshProUGUI mesoTxt;
 
     public GameObject tombstone;
     public GameObject deadWindow;
+    public GameObject levelUpEffect;
+
+    private AudioSource audioSrc;
+    public AudioClip drinkPotionSnd;
+    public AudioClip levelUpSnd;
 
 
     private void Awake()
@@ -59,6 +68,7 @@ public class Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         pc = GetComponent<PlayerController>();
+        audioSrc = GetComponent<AudioSource>();
 
         GetStatus();
         potionCountTxt.text = potionCount.ToString();
@@ -83,8 +93,9 @@ public class Player : MonoBehaviour
         maxHp = PlayerPrefs.GetFloat("maxHp");
         hp = PlayerPrefs.GetFloat("hp");
         maxMp = PlayerPrefs.GetFloat("maxMp");
-        mp = PlayerPrefs.GetFloat("mp");
+        Mp = PlayerPrefs.GetFloat("mp");
         potionCount = PlayerPrefs.GetInt("potionCount");
+        Meso = PlayerPrefs.GetInt("meso");
     }
 
     private void SetStatus()
@@ -98,8 +109,9 @@ public class Player : MonoBehaviour
         PlayerPrefs.SetFloat("maxHp", maxHp);
         PlayerPrefs.SetFloat("hp", hp);
         PlayerPrefs.SetFloat("maxMp", maxMp);
-        PlayerPrefs.SetFloat("mp", mp);
+        PlayerPrefs.SetFloat("mp", Mp);
         PlayerPrefs.SetInt("potionCount", potionCount);
+        PlayerPrefs.SetInt("meso", Meso);
         PlayerPrefs.Save();
     }
 
@@ -107,12 +119,16 @@ public class Player : MonoBehaviour
     {
         nameTxt.text = "player";
         levelTxt.text = "Lv." + level;
-        expTxt.text = string.Format("{0:N0}[{1:N2}]",exp, exp / maxExp * 100f);
+
+        expTxt.text = string.Format("{0:N0}[{1:N2}%]",exp, exp / maxExp * 100f);
         hpTxt.text = string.Format("{0:N0} / {1:N0}", hp, maxHp);
-        mpTxt.text = string.Format("{0:N0} / {1:N0}", mp, maxMp);
-        expSlider.value = exp / maxExp;
-        hpSlider.value = hp / maxHp;
-        mpSlider.value = mp / maxMp;
+        mpTxt.text = string.Format("{0:N0} / {1:N0}", Mp, maxMp);
+        mesoTxt.text = Meso.ToString();
+        potionCountTxt.text = potionCount.ToString();
+
+        expSlider.value = Mathf.Lerp(expSlider.value, exp / maxExp, sliderSpeed * Time.deltaTime);
+        hpSlider.value = Mathf.Lerp(hpSlider.value, hp / maxHp, sliderSpeed * Time.deltaTime);
+        mpSlider.value = Mathf.Lerp(mpSlider.value, Mp / maxMp, sliderSpeed * Time.deltaTime);
     }
 
     public void IncreaseExp(int monsterExp)
@@ -122,16 +138,37 @@ public class Player : MonoBehaviour
             LevelUp();
     }
 
-    private void LevelUp()
+    public void IncreaseMeso(int amount)
     {
+        Meso += amount;
+    }
+    public void DecreaseMeso(int amount)
+    {
+        Meso -= amount;
+    }
+    public void IncreasePotionCount()
+    {
+        potionCount++;
+    }
+
+    public void LevelUp()
+    {
+        GameObject lvUpEft = Instantiate(levelUpEffect);
+        lvUpEft.transform.position = new Vector3(
+            transform.position.x, transform.position.y - 0.16f, 0);
+        Destroy(lvUpEft, 2.0f);
+
+        audioSrc.clip = levelUpSnd;
+        audioSrc.Play();
+
         level++;
-        exp -= maxExp;
+        exp = (exp > maxExp) ? maxExp - exp : 0;
         maxExp += level * 10;
         Power += 5;
         maxHp += level * 5;
         hp = maxHp;
         maxMp += level * 2;
-        mp = maxMp;
+        Mp = maxMp;
     }
 
     public void Hurt(float damage, float dir)
@@ -176,9 +213,11 @@ public class Player : MonoBehaviour
 
     private void DrinkPotion()
     {
+        audioSrc.clip = drinkPotionSnd;
+        audioSrc.Play();
+
         hp = maxHp;
-        mp = maxMp;
+        Mp = maxMp;
         potionCount--;
-        potionCountTxt.text = potionCount.ToString();
     }
 }

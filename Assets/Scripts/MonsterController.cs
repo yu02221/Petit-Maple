@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public enum States
 {
@@ -22,12 +24,21 @@ public class MonsterController : MonoBehaviour
 
     public SpawnPoint spawnPoint;
 
-    public int level = 5;
-    public int exp = 5;
-    public float maxHp = 15;
-    public float hp = 15;
-    public float power = 10;
-    public float moveSpeed = 0.5f;
+    public Slider HpBar;
+    public TextMeshProUGUI damageTxt;
+    public Animator damageTxtAnim;
+
+    private AudioSource audioSrc;
+    public AudioClip hurtSnd;
+    public AudioClip dieSnd;
+
+    public int level;
+    public int exp;
+    public int dropMeso;
+    public float maxHp;
+    public float hp;
+    public float power;
+    public float moveSpeed;
     private bool lookRight;
     private Vector2 velocity;
 
@@ -43,6 +54,7 @@ public class MonsterController : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        audioSrc = GetComponent<AudioSource>();
 
         moveTime = 0;
         randomMoveTime = 1.0f;
@@ -52,6 +64,8 @@ public class MonsterController : MonoBehaviour
     {
         SetMoveType();
         SelectAction();
+
+        HpBar.value = Mathf.Lerp(HpBar.value, hp / maxHp, 5 * Time.deltaTime);
     }
 
     private void SetMoveType()
@@ -126,6 +140,10 @@ public class MonsterController : MonoBehaviour
             state = States.Hurt;
             anim.SetTrigger("hurt");
             hp -= damage;
+            damageTxt.text = string.Format("{0:N0}", damage);
+            damageTxtAnim.SetTrigger("hurt");
+            audioSrc.clip = hurtSnd;
+            audioSrc.Play();
 
             if (hp <= 0)
                 StartCoroutine(Die());
@@ -161,8 +179,14 @@ public class MonsterController : MonoBehaviour
     {
         velocity.x = 0;
         state = States.Die;
+
         anim.SetTrigger("die");
+        audioSrc.clip = dieSnd;
+        audioSrc.Play();
+
         Player.instance.IncreaseExp(exp);
+        Player.instance.IncreaseMeso(dropMeso);
+
         yield return new WaitForSeconds(1.0f);
         gameObject.SetActive(false);
         spawnPoint.isSpawned = false;
