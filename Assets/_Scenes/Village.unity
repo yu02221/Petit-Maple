@@ -1093,7 +1093,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &281580794
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3112,9 +3112,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8445703791134703156, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
-      propertyPath: meso
-      value: 100
+    - target: {fileID: 7689634628951803973, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7689634628951803973, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 8445703791134703156, guid: 8480ff5a272db9a4988a3bc3fa9cdd86, type: 3}
       propertyPath: hpTxt

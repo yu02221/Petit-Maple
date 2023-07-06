@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI mpTxt;
     public TextMeshProUGUI potionCountTxt;
     public TextMeshProUGUI mesoTxt;
+    public TextMeshProUGUI damageTxt;
+    public Animator damageTxtAnim;
 
     public GameObject tombstone;
     public GameObject deadWindow;
@@ -178,6 +180,10 @@ public class Player : MonoBehaviour
             hp -= damage;
             pc.HurtAction(dir);
             StartCoroutine(Unbeatable(0.5f));
+
+            damageTxt.text = string.Format("{0:N0}", damage);
+            damageTxtAnim.SetTrigger("hurt");
+
             if (hp <= 0)
             {
                 hp = 0;
