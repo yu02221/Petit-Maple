@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     public Slider hpSlider;
     public Slider mpSlider;
     public Text nameTxt;
+    public Text nameTagTxt;
     public TextMeshProUGUI levelTxt;
     public TextMeshProUGUI expTxt;
     public TextMeshProUGUI hpTxt;
@@ -102,7 +103,8 @@ public class Player : MonoBehaviour
 
     private void SetStatus()
     {
-        PlayerPrefs.SetInt("currentSceneNumber", GameManager.instance.currentSceneNumber);
+        if (GameManager.instance.currentSceneNumber > 0)
+            PlayerPrefs.SetInt("currentSceneNumber", GameManager.instance.currentSceneNumber);
         PlayerPrefs.SetString("playerName", playerName);
         PlayerPrefs.SetInt("level", level);
         PlayerPrefs.SetFloat("exp", exp);
@@ -119,7 +121,8 @@ public class Player : MonoBehaviour
 
     private void SetUI()
     {
-        nameTxt.text = "player";
+        nameTxt.text = playerName;
+        nameTagTxt.text = playerName;
         levelTxt.text = "Lv." + level;
 
         expTxt.text = string.Format("{0:N0}[{1:N2}%]",exp, exp / maxExp * 100f);

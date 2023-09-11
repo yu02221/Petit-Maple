@@ -79,12 +79,12 @@ MonoBehaviour:
     rgba: 16777215
   m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 1
-  m_colorMode: 3
+  m_colorMode: 2
   m_fontColorGradient:
     topLeft: {r: 1, g: 0.26311314, b: 0, a: 1}
-    topRight: {r: 1, g: 0.17674884, b: 0, a: 1}
+    topRight: {r: 1, g: 0.26311314, b: 0, a: 1}
     bottomLeft: {r: 1, g: 0.7734498, b: 0, a: 1}
-    bottomRight: {r: 1, g: 0.7319846, b: 0, a: 1}
+    bottomRight: {r: 1, g: 0.7734498, b: 0, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -146,7 +146,7 @@ Animator:
   m_GameObject: {fileID: 126130745924289145}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 38fcd0e99c0b03d489619fc48df2cf08, type: 2}
+  m_Controller: {fileID: 9100000, guid: e8a7c97d1f6e35140b842f0b9d5538c1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
