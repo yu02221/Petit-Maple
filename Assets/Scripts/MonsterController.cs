@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+// 몬스터 상태 목록
 public enum States
 {
     Idle,
@@ -42,8 +43,8 @@ public class MonsterController : MonoBehaviour
     private bool lookRight;
     private Vector2 velocity;
 
-    public float leftMoveRange;
-    public float rightMoveRange;
+    public float leftMoveRange;     // 스폰 위치에 따른 왼쪽 최대 이동 범위
+    public float rightMoveRange;    // 스폰 위치에 따른 오른쪽 최대 이동 범위
 
     private float randomMoveTime;
     private float moveTime;
@@ -70,6 +71,7 @@ public class MonsterController : MonoBehaviour
 
     private void SetMoveType()
     {
+        // 3 ~ 5초 마다 몬스터 행동 변경
         moveTime += Time.deltaTime;
         if (moveTime >= randomMoveTime)
         {
@@ -88,7 +90,7 @@ public class MonsterController : MonoBehaviour
             }
         }
     }
-
+    // 상태에 따른 행동 실행
     private void SelectAction()
     {
         switch (state)
@@ -131,7 +133,7 @@ public class MonsterController : MonoBehaviour
             velocity.x = -moveSpeed;
         }
     }
-
+    // 피격시
     public void Hurt(float damage)
     {
         if (hp > 0)
@@ -149,7 +151,7 @@ public class MonsterController : MonoBehaviour
                 StartCoroutine(Die());
         }
     }
-
+    // 피격 시 뒤로 밀려난 후 Angry로 상태 변경
     private void HurtAction()
     {
         hurtTime += Time.deltaTime;
@@ -159,6 +161,7 @@ public class MonsterController : MonoBehaviour
         velocity.x = Player.instance.lookDirection;
     }
 
+    // 피격 후 플레이어 추격
     private void Angry()
     {
         anim.SetBool("move", true);
@@ -175,6 +178,7 @@ public class MonsterController : MonoBehaviour
         }
     }
 
+    // 사망 애니메이션 출력 및 플레이어에게 보상 지급 후 디스폰
     private IEnumerator Die()
     {
         velocity.x = 0;

@@ -9,6 +9,7 @@ public class CanvasManager : MonoBehaviour
 
     public GameObject MenuBar;
 
+    // 싱글톤
     private void Awake()
     {
         if (instance == null)
@@ -23,11 +24,13 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
+    // 메뉴 바 활성화, 비활성화
     public void OnClickMenuBtn()
     {
         MenuBar.SetActive(!MenuBar.activeSelf);
     }
 
+    // 저장 후 메뉴 씬으로 이동
     public void OnClickQuitBtn()
     {
         PlayerPrefs.Save();
