@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("currentSceneNumber", 1);
         PlayerPrefs.SetString("playerName", playerName);
         PlayerPrefs.SetInt("level", 1);
+        PlayerPrefs.SetInt("jobLevel", 0);
         PlayerPrefs.SetFloat("exp", 0);
         PlayerPrefs.SetFloat("maxExp", 10);
         PlayerPrefs.SetFloat("power", 10);

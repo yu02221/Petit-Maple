@@ -6,6 +6,7 @@ public class Portal : MonoBehaviour
 {
     private void Start()
     {
+        // 연속으로 포탈을 넘지 않기 위해 조건 확인
         string name = gameObject.name;
         if (name == "RightPortal" && GameManager.instance.loadLeftScene == true)
         {

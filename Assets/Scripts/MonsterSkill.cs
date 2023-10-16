@@ -12,8 +12,9 @@ public class MonsterSkill : MonoBehaviour
     {
         if (mc.state != States.Die && collision.tag == "Player")
         {
+            float rand = Random.Range(0.8f, 1.2f);
             float dir = (collision.transform.position - transform.position).normalized.x;
-            collision.GetComponent<Player>().Hurt(power, dir);
+            collision.GetComponent<Player>().Hurt(power * rand, dir);
         }
     }
 }

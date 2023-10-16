@@ -13,8 +13,10 @@ public class Player : MonoBehaviour
     private Animator anim;
     private PlayerController pc;
 
+    // 플레이어 스테이터스
     private string playerName;
-    private int level;
+    public int level;
+    public int jobLevel = 0;
     private float exp;
     private float maxExp;
     public float Power { get; private set; }
@@ -52,7 +54,7 @@ public class Player : MonoBehaviour
     public AudioClip drinkPotionSnd;
     public AudioClip levelUpSnd;
 
-
+    // 싱글톤
     private void Awake()
     {
         if (instance == null)
@@ -86,10 +88,12 @@ public class Player : MonoBehaviour
             DrinkPotion();
     }
 
+    // 플레이어 프리펩스에서 스테이터스 가져오기
     public void GetStatus()
     {
         playerName = PlayerPrefs.GetString("playerName");
         level = PlayerPrefs.GetInt("level");
+        jobLevel = PlayerPrefs.GetInt("jobLevel");
         exp = PlayerPrefs.GetFloat("exp");
         maxExp = PlayerPrefs.GetFloat("maxExp");
         Power = PlayerPrefs.GetFloat("power");
@@ -101,12 +105,14 @@ public class Player : MonoBehaviour
         Meso = PlayerPrefs.GetInt("meso");
     }
 
+    // 플레이어 프리펩스에 현제 스테이터스 저장
     private void SetStatus()
     {
         if (GameManager.instance.currentSceneNumber > 0)
             PlayerPrefs.SetInt("currentSceneNumber", GameManager.instance.currentSceneNumber);
         PlayerPrefs.SetString("playerName", playerName);
         PlayerPrefs.SetInt("level", level);
+        PlayerPrefs.SetInt("jobLevel", jobLevel);
         PlayerPrefs.SetFloat("exp", exp);
         PlayerPrefs.SetFloat("maxExp", maxExp);
         PlayerPrefs.SetFloat("power", Power);
@@ -119,6 +125,7 @@ public class Player : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    // 스테이터스에 맞춰 UI변경
     private void SetUI()
     {
         nameTxt.text = playerName;
@@ -136,6 +143,7 @@ public class Player : MonoBehaviour
         mpSlider.value = Mathf.Lerp(mpSlider.value, Mp / maxMp, sliderSpeed * Time.deltaTime);
     }
 
+    // 경험치 증가
     public void IncreaseExp(int monsterExp)
     {
         exp += monsterExp;
@@ -143,19 +151,25 @@ public class Player : MonoBehaviour
             LevelUp();
     }
 
+    // 메소 획득
     public void IncreaseMeso(int amount)
     {
         Meso += amount;
     }
+
+    // 아이템 구매시 메소 감소
     public void DecreaseMeso(int amount)
     {
         Meso -= amount;
     }
+
+    // 포션 소비
     public void IncreasePotionCount()
     {
         potionCount++;
     }
-
+    
+    // 레벨업 처리
     public void LevelUp()
     {
         GameObject lvUpEft = Instantiate(levelUpEffect);
@@ -167,7 +181,7 @@ public class Player : MonoBehaviour
         audioSrc.Play();
 
         level++;
-        exp = (exp > maxExp) ? maxExp - exp : 0;
+        exp = (exp > maxExp) ? exp - maxExp : 0;
         maxExp += level * 10;
         Power += 5;
         maxHp += level * 5;
@@ -176,6 +190,7 @@ public class Player : MonoBehaviour
         Mp = maxMp;
     }
 
+    // 피격 처리
     public void Hurt(float damage, float dir)
     {
         if (hp > 0 && !unbeatable)
@@ -195,6 +210,8 @@ public class Player : MonoBehaviour
         }
 
     }
+
+    // 사망 처리
     private void Die()
     {
         exp -= maxExp * 0.1f;
@@ -205,6 +222,7 @@ public class Player : MonoBehaviour
         deadWindow.SetActive(true);
     }
 
+    // 마을에서 부활
     public void Resurrection()
     {
         deadWindow.SetActive(false);
@@ -212,7 +230,8 @@ public class Player : MonoBehaviour
         pc.dead = false;
         GameManager.instance.GoToVillage();
     }
-
+    
+    // 공격 불가 코루틴
     private IEnumerator Unbeatable(float time)
     {
         unbeatable = true;
@@ -220,6 +239,7 @@ public class Player : MonoBehaviour
         unbeatable = false;
     }
 
+    // 포션을 통한 체력 회복
     private void DrinkPotion()
     {
         audioSrc.clip = drinkPotionSnd;

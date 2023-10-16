@@ -73,3 +73,9 @@ TagManager:
   - name: Portal
     uniqueID: 3519585029
     locked: 0
+  - name: PlayerCanvas
+    uniqueID: 13052815
+    locked: 0
+  - name: NPCCanvas
+    uniqueID: 268627701
+    locked: 0

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 플레이어 사망시 비석 떨어짐 처리
 public class TombstoneDown : MonoBehaviour
 {
     private Vector2 velocity;
     private float gravity = -9.81f;
+
     private void Start()
     {
         transform.position = new Vector3(

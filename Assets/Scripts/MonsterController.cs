@@ -116,6 +116,7 @@ public class MonsterController : MonoBehaviour
             transform.position.z);
     }
 
+    // 발판 범위 내에서 좌, 우로 이동
     private void Move()
     {
         if (transform.position.x <= leftMoveRange)
@@ -133,7 +134,7 @@ public class MonsterController : MonoBehaviour
             velocity.x = -moveSpeed;
         }
     }
-    // 피격시
+    // 피격시 처리
     public void Hurt(float damage)
     {
         if (hp > 0)
@@ -196,6 +197,7 @@ public class MonsterController : MonoBehaviour
         spawnPoint.isSpawned = false;
     }
 
+    // 리스폰
     public void Respawn()
     {
         hp = maxHp;

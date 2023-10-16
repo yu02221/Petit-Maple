@@ -9,6 +9,8 @@ public class CanvasManager : MonoBehaviour
 
     public GameObject MenuBar;
 
+    public GameObject PlainIcon;
+
     // 싱글톤
     private void Awake()
     {
@@ -22,6 +24,14 @@ public class CanvasManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Update()
+    {
+        if (Player.instance.jobLevel >= 1)
+            PlainIcon.SetActive(true);
+        else
+            PlainIcon.SetActive(false);
     }
 
     // 메뉴 바 활성화, 비활성화

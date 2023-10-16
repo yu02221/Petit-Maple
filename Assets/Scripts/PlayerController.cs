@@ -54,12 +54,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // 히든포탈 이용
         if (!dead && inHiddenPortal && Input.GetKeyDown(KeyCode.UpArrow))
         {
             transform.position = hiddenPortalDest.position;
         }
     }
 
+    // 플레이어 움직임 처리
     private void FixedUpdate()
     {
         if (!dead)
@@ -80,6 +82,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isAttacking)
         {
+            // 사다리에 매다리기
             if (col.CompareTag("Ladder") && input.y > 0
             || col.CompareTag("LadderTop") && input.y < 0)
             {
@@ -89,6 +92,7 @@ public class PlayerController : MonoBehaviour
                     transform.position.z);
                 onLadder = true;
             }
+            // 줄에 매달리기
             if (col.CompareTag("Rope") && input.y > 0
                 || col.CompareTag("RopeTop") && input.y < 0)
             {
@@ -98,16 +102,17 @@ public class PlayerController : MonoBehaviour
                     transform.position.z);
                 onRope = true;
             }
-
+            // 왼쪽 포탈로 이동
             if (col.name == "LeftPortal" && input.y > 0)
             {
                 GameManager.instance.GoLeftField();
             }
+            // 오른쪽 포탈로 이동
             if (col.name == "RightPortal" && input.y > 0)
             {
                 GameManager.instance.GoRightField();
             }
-
+            // 히든 포탈 안에 있는지 확인
             if (col.CompareTag("HiddenPortal"))
             {
                 inHiddenPortal = true;
@@ -118,22 +123,26 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
+        // 사다리 탈출
         if (col.CompareTag("Ladder") && input.y <= 0
             || col.CompareTag("LadderTop") && input.y >= 0)
         {
             onLadder = false;
             QuitClimb();
         }
+        // 로프 탈출
         if (col.CompareTag("Rope") && input.y <= 0
             || col.CompareTag("RopeTop") && input.y >= 0)
         {
             onRope = false;
             QuitClimb();
         }
+        // 히든포탈 탈출
         if (col.CompareTag("HiddenPortal"))
             inHiddenPortal = false;
     }
 
+    // 방향키 입력
     private void KeyboardInput()
     {
         input = new Vector2(Input.GetAxisRaw("Horizontal"), 
@@ -153,7 +162,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
+    // 땅에 착지한 상태인지 판별
     private void GroundCheck()
     {
         onGround = Physics2D.OverlapCircle(
@@ -166,6 +175,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // 플레이어 이동 처리
     private void Move()
     {
         if (rb.velocity.y < -0.2f)
@@ -212,7 +222,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(NormalAttack());
         }
 
-        if (Input.GetKey(KeyCode.A) &&
+        if (Input.GetKey(KeyCode.A) && Player.instance.jobLevel >= 1 &&
             !isAttacking && !isProstrated && !onLadder && !onRope)
         {
             if (Player.instance.Mp >= plain.GetComponent<PlayerSkill>().needMp)
@@ -221,7 +231,7 @@ public class PlayerController : MonoBehaviour
         // 플레이어 이동
         transform.Translate(velocity * Time.fixedDeltaTime);
     }
-
+    // 좌우 이동
     private void Walking(Vector2 input)
     {
         velocity.x = input.x * moveSpeed;
@@ -230,7 +240,7 @@ public class PlayerController : MonoBehaviour
         if (velocity.x == 0)
             isWalking = false;
     }
-
+    // 일반 점프
     private void NormalJump()
     {
         audioSrc.clip = jumpSnd;
@@ -240,7 +250,7 @@ public class PlayerController : MonoBehaviour
         velocity.y = jumpPower;
     }
 
-
+    // 아래 점프
     private IEnumerator DownJump()
     {
         audioSrc.clip = jumpSnd;
@@ -252,7 +262,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         gameObject.layer = 9;
     }
-
+    // 사다리 또는 줄 위일 때
     private void Climb()
     {
         onGround = false;
@@ -271,6 +281,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // 점프로 사다리 또는 줄 탈출
     private void JumpOnClimb()
     {
         audioSrc.clip = jumpSnd;
@@ -283,6 +294,7 @@ public class PlayerController : MonoBehaviour
         velocity.y = 2;
     }
 
+    // 사다리 또는 줄 탈출 처리
     private void QuitClimb()
     {
         gravity = -9.81f;
@@ -291,6 +303,7 @@ public class PlayerController : MonoBehaviour
         anim.speed = 1;
     }
 
+    // 일반 공격 처리
     private IEnumerator NormalAttack()
     {
         audioSrc.clip = normalAttackSnd;
@@ -304,6 +317,7 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
     }
 
+    // 1차 스킬(플레인)
     private IEnumerator Plain()
     {
         audioSrc.clip = plainSnd;
@@ -317,6 +331,7 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
     }
 
+    // 피격 모션 처리
     public void HurtAction(float dir)
     {
         anim.SetTrigger("hurt");
@@ -324,6 +339,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -2, 2), Mathf.Clamp(rb.velocity.y, -2, 2));
     }
 
+    // 상태에 따라 애니메이션 변수 변경
     private void SetAnimatorBool()
     {
         anim.SetBool("onGround", onGround);
