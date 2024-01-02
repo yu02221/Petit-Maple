@@ -50,18 +50,7 @@ public class GameManager : MonoBehaviour
         // 현제 필드의 스폰 포인트로 변경
         spawnPoints = GameObject.Find("SpawnPoints").GetComponentsInChildren<SpawnPoint>();
 
-        spawnTime -= Time.deltaTime;
-        if (spawnTime < 0)
-        {   // 최초 스폰 후 몬스터가 사라진 스폰포인트에서 10초에 한 번씩 몬스터 스폰
-            spawnTime = 10;
-            for (int i = 0; i < spawnPoints.Length; i++)
-            {
-                if (!spawnPoints[i].isSpawned)
-                {
-                    spawnPoints[i].MonsterSpawn();
-                }
-            }
-        }
+        SpawnMonster();
     }
     // 최초 스폰 시간으로 리셋
     public void ResetSpawnTime()
@@ -119,5 +108,21 @@ public class GameManager : MonoBehaviour
     {
         audioSrc.clip = btnMouseClickSnd;
         audioSrc.Play();
+    }
+
+    private void SpawnMonster()
+    {
+        spawnTime -= Time.deltaTime;
+        if (spawnTime < 0)
+        {   // 최초 스폰 후 몬스터가 사라진 스폰포인트에서 10초에 한 번씩 몬스터 스폰
+            spawnTime = 10;
+            for (int i = 0; i < spawnPoints.Length; i++)
+            {
+                if (!spawnPoints[i].isSpawned)
+                {
+                    spawnPoints[i].Spawn();
+                }
+            }
+        }
     }
 }

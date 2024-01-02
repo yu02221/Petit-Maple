@@ -8,7 +8,7 @@ public class SpawnPoint : MonoBehaviour
     public bool isSpawned = false;
 
     // 스폰포인트에서 몬스터 스폰
-    public void MonsterSpawn()
+    public void Spawn()
     {
         isSpawned = true;
         monster.SetActive(true);
